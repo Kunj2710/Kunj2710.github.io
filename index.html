@@ -155,8 +155,8 @@
   <canvas id="stream" aria-hidden="true"></canvas>
   <div class="wrap">
     <p class="kicker">Boston · M.S. Applied Data Analytics, Boston University</p>
-    <h1>I find the number<br>everyone else<br><em>measured wrong.</em></h1>
-    <p class="sub">Data scientist working on distributed ML and cost-aware model selection. My paper on predicting Wikipedia editor dropout across <b>60M revision events</b> is at <b>EAI CSECS 2026</b>. Before grad school, a year shipping software hospitals used daily.</p>
+    <h1>Kunj Patel</h1>
+    <p class="sub">Data scientist working on distributed machine learning and cost-aware model selection. My paper on predicting Wikipedia editor dropout across <b>60M revision events</b> was accepted at <b>EAI CSECS 2026</b>. Before grad school, a year shipping software that hospitals used daily.</p>
     <p class="cta">
       <a class="key" href="#work">See the work</a>
       <a href="https://github.com/Kunj2710">GitHub</a>
@@ -183,7 +183,7 @@
         <h3>Predicting Wikipedia editor dropout at scale</h3>
         <span class="badge">Paper · CSECS 2026</span>
       </div>
-      <p class="who">with Aryan Meena, advised by Prof. F. Alizadeh-Sabdiz · Boston, Nov 3–5 · Springer LNICST</p>
+      <p class="who">with Aryan Meena, advised by Prof. F. Alizadeh-Sabdiz · Boston, 3 to 5 November · Springer LNICST</p>
       <div class="cols">
         <div>
           <p>Wikipedia runs on volunteers and keeps losing its newcomers. Prior studies fit on one machine, which capped them at small samples. We asked whether an editor's <b>first ten edits</b> predict whether they are gone six months later, across the full English history from 2021 to 2025: 25 GB compressed, 60 million revision events, 1.15 million editors. Roughly ten times the scale of previous single-machine work.</p>
@@ -261,7 +261,7 @@
           </div>
           <p class="mark broke">What went wrong, and why it mattered</p>
           <div class="broke-body">
-            <p>My oversampled models failed consistently: 95%+ on the majority class, 30–46% recall on the households we cared about. The useful part was working out why. One-hot encoding pushes the data into 778 mostly binary dimensions, and SMOTE interpolates between neighbours, producing fractions for yes/no fields: households that cannot exist. Undersampling won by keeping only real rows. That negative result is now the most useful paragraph in our report.</p>
+            <p>My oversampled models failed consistently: 95% or more on the majority class, 30 to 46% recall on the households we cared about. The useful part was working out why. One-hot encoding pushes the data into 778 mostly binary dimensions, and SMOTE interpolates between neighbours, producing fractions for yes/no fields: households that cannot exist. Undersampling won by keeping only real rows. That negative result is now the most useful paragraph in our report.</p>
           </div>
           <p class="stack"><span>scikit-learn</span><span>imbalanced-learn</span><span>XGBoost</span><span>GridSearchCV</span></p>
           <a class="golink" href="https://github.com/Kunj2710/ahs-disability-prediction">Code and write-up →</a>
@@ -307,11 +307,11 @@
 
   <section id="history">
     <p class="label">History</p>
-    <div class="job"><div class="yr">2026 — now</div><div><h4>Data Analyst · BU IT Help Center</h4><p>Weekly and monthly Power BI dashboards adopted by help-desk leadership; prototyped AI-assisted triage for routine tickets. Led the team in call volume for three straight weeks while building it.</p></div></div>
+    <div class="job"><div class="yr">2026 to now</div><div><h4>Data Analyst · BU IT Help Center</h4><p>Weekly and monthly Power BI dashboards adopted by help-desk leadership; prototyped AI-assisted triage for routine tickets. Led the team in call volume for three straight weeks while building it.</p></div></div>
     <div class="job"><div class="yr">2024</div><div><h4>Software Developer · Artem HealthTech</h4><p>Hospital information system used by 1,000+ municipal healthcare workers. Query work cut page loads 35%; a Redis layer cut database load 40% and $3,000/month of infrastructure. Eight clinical workflows redesigned, saving clinicians about 45 minutes a day.</p></div></div>
     <div class="job"><div class="yr">2024</div><div><h4>Project Manager · Wellnest Tech</h4><p>Angular and .NET sales analytics for 200+ daily users. Promoted from intern after three months to lead five developers. Dashboards surfaced $50K in recoverable revenue; CI/CD took deploys from 3 days to 4 hours.</p></div></div>
     <div class="job"><div class="yr">2023</div><div><h4>Software Developer Intern · Telnet</h4><p>Recipe platform in Angular for 500+ beta users; one-click cart hit 70% adoption in two weeks.</p></div></div>
-    <div class="job"><div class="yr">2025 — 2026</div><div><h4>M.S. Applied Data Analytics · Boston University</h4><p>GPA 3.8. Big Data Analytics, Data Mining, Data Science with Python, Database Design. B.E. Information Technology, Gujarat Technological University (3.7).</p></div></div>
+    <div class="job"><div class="yr">2025 to 2026</div><div><h4>M.S. Applied Data Analytics · Boston University</h4><p>GPA 3.8. Big Data Analytics, Data Mining, Data Science with Python, Database Design. B.E. Information Technology, Gujarat Technological University (3.7).</p></div></div>
   </section>
 </div>
 
@@ -489,11 +489,11 @@
   }
   document.getElementById('smoteBtn').addEventListener('click', function(){
     smoteOn = true; this.setAttribute('aria-pressed','true'); genSynth(); drawSmote();
-    cap.innerHTML = '<span style="color:#ffb545">Amber points are synthetic.</span> Each one claims a household with 0.4 of a garage and 0.7 of a heating system. In 778 dimensions almost every synthetic sample looks like this, which is why the oversampled models scored 95% on the majority class and 30–46% on the class that mattered.';
+    cap.innerHTML = '<span style="color:#ffb545">Amber points are synthetic.</span> Each one claims a household with 0.4 of a garage and 0.7 of a heating system. In 778 dimensions almost every synthetic sample looks like this, which is why the oversampled models scored 95% on the majority class and just 30 to 46% on the class that mattered.';
   });
   document.getElementById('resetBtn').addEventListener('click', function(){
     synth = []; smoteOn = false; document.getElementById('smoteBtn').setAttribute('aria-pressed','false'); drawSmote();
-    cap.textContent = 'Real households sit at the corners: a home either has a garage or it doesn’t. Press the button to see where SMOTE puts its synthetic minority samples.';
+    cap.textContent = 'Real households sit at the corners, because a home either has a garage or it does not. Press the button to see where SMOTE puts its synthetic minority samples.';
   });
   addEventListener('resize', drawSmote);
 
