@@ -1,0 +1,340 @@
+<title>Kunj Patel, Data Scientist</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@500;600;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+  :root{
+    --paper:#fbfbf8; --ink:#111417; --ink-2:#4d565e; --ink-3:#7c868f;
+    --rule:#e2e2db; --card:#ffffff; --accent:#1447c4; --accent-2:#0d7a66;
+    --flag:#9a4a16; --flag-bg:#fbf1e7; --good-bg:#e9f3ef;
+    --sans:'Libre Franklin',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,sans-serif;
+    --serif:'Source Serif 4','Iowan Old Style',Georgia,serif;
+    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme:dark;
+      --paper:#0f1214; --ink:#e9ecee; --ink-2:#a5aeb5; --ink-3:#7b858c;
+      --rule:#252b2e; --card:#161a1d; --accent:#6f9dff; --accent-2:#4fc4aa;
+      --flag:#e0a76a; --flag-bg:#241c12; --good-bg:#122420;
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme:dark;
+    --paper:#0f1214; --ink:#e9ecee; --ink-2:#a5aeb5; --ink-3:#7b858c;
+    --rule:#252b2e; --card:#161a1d; --accent:#6f9dff; --accent-2:#4fc4aa;
+    --flag:#e0a76a; --flag-bg:#241c12; --good-bg:#122420;
+  }
+  body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:17px;line-height:1.62;}
+  .page{max-width:1080px;margin:0 auto;padding-inline:22px;padding-block:0 72px;}
+  a{color:var(--accent);text-underline-offset:3px;}
+  h1,h2,h3,.sans{font-family:var(--sans);}
+
+  /* header */
+  header{padding-block:56px 30px;border-bottom:1px solid var(--rule);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-2);margin:0 0 14px;}
+  h1{font-size:clamp(34px,6vw,52px);line-height:1.04;font-weight:800;letter-spacing:-.02em;margin:0 0 14px;text-wrap:balance;}
+  .lede{font-size:clamp(18px,2.4vw,21px);color:var(--ink-2);max-width:60ch;margin:0 0 26px;}
+  .lede b{color:var(--ink);font-weight:600;}
+  .links{display:flex;flex-wrap:wrap;gap:10px;font-family:var(--sans);font-size:14px;}
+  .links a{display:inline-block;padding:7px 13px;border:1px solid var(--rule);border-radius:2px;text-decoration:none;color:var(--ink);background:var(--card);}
+  .links a:hover{border-color:var(--accent);color:var(--accent);}
+  .links a.primary{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+
+  /* proof strip */
+  .proof{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-bottom:1px solid var(--rule);}
+  .proof div{padding:22px 20px 22px 0;border-right:1px solid var(--rule);}
+  .proof div:last-child{border-right:none;padding-right:0;}
+  .proof .n{font-family:var(--mono);font-size:22px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;display:block;}
+  .proof .t{font-family:var(--sans);font-size:13.5px;color:var(--ink-2);line-height:1.4;display:block;margin-top:4px;}
+
+  section{padding-block:52px 0;}
+  h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin:0 0 6px;}
+  .section-note{color:var(--ink-2);font-size:15.5px;margin:0 0 30px;max-width:62ch;}
+
+  /* case study */
+  .case{border-top:2px solid var(--ink);padding-block:26px 40px;}
+  .case-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:4px;}
+  .case h3{font-size:clamp(23px,3.4vw,30px);font-weight:700;letter-spacing:-.015em;margin:0;line-height:1.15;}
+  .tag{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:4px 8px;border-radius:2px;background:var(--good-bg);color:var(--accent-2);white-space:nowrap;}
+  .role{font-family:var(--sans);font-size:13.5px;color:var(--ink-3);margin:0 0 18px;}
+  .grid{display:grid;grid-template-columns:1.25fr 1fr;gap:34px;align-items:start;}
+  .grid>*{min-width:0;}
+  .proof div{min-width:0;}
+  .q{font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--ink-3);margin:0 0 6px;text-transform:uppercase;}
+  .body p{margin:0 0 16px;}
+  .metrics{border:1px solid var(--rule);background:var(--card);border-radius:3px;padding:4px 18px;}
+  .metrics dl{margin:0;}
+  .metrics div{display:flex;justify-content:space-between;gap:14px;padding:11px 0;border-bottom:1px solid var(--rule);align-items:baseline;flex-wrap:wrap;}
+  .metrics div:last-child{border-bottom:none;}
+  .metrics dt{font-family:var(--sans);font-size:13.5px;color:var(--ink-2);min-width:0;overflow-wrap:anywhere;}
+  .metrics dd{margin:0;font-family:var(--mono);font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .mine{border-left:3px solid var(--accent-2);padding:2px 0 2px 16px;margin:0 0 18px;}
+  .broke{background:var(--flag-bg);border-radius:3px;padding:16px 18px;margin:0 0 18px;}
+  .broke .q{color:var(--flag);}
+  .stack{font-family:var(--mono);font-size:12px;color:var(--ink-3);margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;}
+  .stack span{border:1px solid var(--rule);padding:3px 7px;border-radius:2px;white-space:nowrap;}
+  .caselinks{font-family:var(--sans);font-size:14px;margin:16px 0 0;display:flex;gap:18px;flex-wrap:wrap;}
+
+  /* compact cards */
+  .more{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);}
+  .more article{background:var(--card);padding:22px 20px;}
+  .more h4{font-family:var(--sans);font-size:17px;margin:0 0 8px;font-weight:600;line-height:1.25;}
+  .more p{font-size:15px;color:var(--ink-2);margin:0 0 12px;}
+  .more .res{font-family:var(--mono);font-size:12.5px;color:var(--accent-2);display:block;margin-bottom:10px;}
+  .more a{font-family:var(--sans);font-size:13.5px;}
+
+  /* how i work */
+  .principles{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .principles h4{font-family:var(--sans);font-size:18px;margin:0 0 8px;font-weight:600;}
+  .principles p{font-size:15.5px;color:var(--ink-2);margin:0;}
+  .principles .ex{display:block;margin-top:10px;font-family:var(--mono);font-size:12px;color:var(--ink-3);}
+
+  /* experience */
+  .exp{border-top:1px solid var(--rule);padding:18px 0;display:grid;grid-template-columns:150px 1fr;gap:24px;}
+  .exp .when{font-family:var(--mono);font-size:12.5px;color:var(--ink-3);padding-top:3px;}
+  .exp h4{font-family:var(--sans);font-size:17px;margin:0 0 6px;font-weight:600;}
+  .exp p{margin:0;font-size:15.5px;color:var(--ink-2);}
+
+  footer{margin-top:64px;border-top:2px solid var(--ink);padding-top:26px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:flex-end;}
+  footer .big{font-family:var(--sans);font-size:clamp(20px,3vw,26px);font-weight:700;margin:0 0 8px;}
+  footer p{margin:0;color:var(--ink-2);font-size:15px;}
+  .fine{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);}
+
+  @media (max-width:820px){
+    .grid{grid-template-columns:1fr;gap:22px;}
+    .more,.principles{grid-template-columns:1fr;}
+    .proof{grid-template-columns:1fr;}
+    .proof div{border-right:none;border-bottom:1px solid var(--rule);padding:16px 0;}
+    .proof div:last-child{border-bottom:none;}
+    .exp{grid-template-columns:1fr;gap:6px;}
+  }
+</style>
+
+<div class="page">
+  <header>
+    <p class="eyebrow">Boston, MA · open to 2027 roles</p>
+    <h1>Kunj Patel</h1>
+    <p class="lede">I build data systems end to end, from a <b>25 GB Spark pipeline</b> to the model and the dashboard someone actually opens. Currently finishing an M.S. in Applied Data Analytics at Boston University. Before that, a year shipping production software that hospitals and sales teams used daily.</p>
+    <p class="links">
+      <a class="primary" href="mailto:kunjpatel271002@gmail.com">kunjpatel271002@gmail.com</a>
+      <a href="https://github.com/Kunj2710">GitHub</a>
+      <a href="https://linkedin.com/in/kunj2710">LinkedIn</a>
+      <a href="https://csecs-conf.eai-conferences.org/2026/">CSECS 2026 paper</a>
+    </p>
+  </header>
+
+  <div class="proof">
+    <div><span class="n">60M+</span><span class="t">Wikipedia revision events processed on Spark, in a paper accepted at EAI CSECS 2026</span></div>
+    <div><span class="n">1,000+</span><span class="t">healthcare workers used the hospital system I maintained; 35% faster page loads</span></div>
+    <div><span class="n">100+</span><span class="t">models trained and compared across five projects, each judged on the metric that matters</span></div>
+  </div>
+
+  <section>
+    <h2>Selected work</h2>
+    <p class="section-note">Three projects in depth. Each one says what it had to get right, what I owned, and what went wrong on the first attempt, because that part is usually where the work actually happened.</p>
+
+    <!-- CASE 1 -->
+    <div class="case">
+      <div class="case-head">
+        <h3>Predicting Wikipedia editor dropout at scale</h3>
+        <span class="tag">Paper · CSECS 2026</span>
+      </div>
+      <p class="role">Co-author with Aryan Meena, advised by Prof. F. Alizadeh-Sabdiz · accepted at EAI CSECS 2026, Boston, Nov 3–5 · Springer LNICST</p>
+      <div class="grid">
+        <div class="body">
+          <p class="q">The problem</p>
+          <p>Wikipedia runs on volunteers, and most newcomers stop editing within months. The Wikimedia Foundation funds research on this because article coverage depends on it. Earlier studies ran on a single machine, which capped them at samples small enough to fit in memory.</p>
+          <p>We asked whether an editor's <b>first ten edits</b> predict whether they will be gone six months later, across the full English Wikipedia history from 2021 to 2025: 25 GB compressed, 60 million revision events, 1.15 million editors. That is roughly ten times the scale of prior single-machine work.</p>
+
+          <div class="mine">
+            <p class="q">What I owned</p>
+            <p>The <b>feature representation and the model benchmark</b>. I designed the 13-feature behavioural vector and the rule that made it defensible: every feature has to be computable from an editor's first ten edits alone. Anything drawn from their later history would leak the outcome we were predicting and quietly inflate our numbers. I then implemented and benchmarked the three models, including logistic regression and K-Means written directly on Spark RDDs rather than called from MLlib, so the comparison was ours end to end.</p>
+          </div>
+
+          <div class="broke">
+            <p class="q">What made it hard</p>
+            <p>Scale changes which mistakes are cheap. A leaky feature on a laptop costs a rerun; here a full pass over 60 million events costs cluster time, so the feature set had to be right before the first run rather than after. The live scorer brought the opposite problem: a streaming event has no window around it, so features defined over an editor's history had to be replaced with single-event proxies that keep the same schema the batch models were trained on.</p>
+          </div>
+          <p>The result is the first reproducible, fully cloud-native benchmark for this problem at this scale. Same features, two paths: batch training on Dataproc, and a live scorer reading Wikipedia's edit stream through Kafka with end-to-end latency under a minute.</p>
+        </div>
+        <aside>
+          <div class="metrics">
+            <dl>
+              <div><dt>Distributed Keras DNN (Elephas)</dt><dd>AUC 0.909</dd></div>
+              <div><dt>Logistic regression, RDD from scratch</dt><dd>AUC 0.845</dd></div>
+              <div><dt>Gain over baseline</dt><dd>+6.4 pts</dd></div>
+              <div><dt>Editors analysed</dt><dd>1.15M</dd></div>
+              <div><dt>Revision events</dt><dd>60M+</dd></div>
+              <div><dt>Live scoring latency</dt><dd>&lt; 60 s</dd></div>
+            </dl>
+          </div>
+          <p class="stack"><span>PySpark</span><span>Kafka</span><span>Elephas</span><span>Keras</span><span>GCP Dataproc</span><span>BigQuery</span><span>Structured Streaming</span></p>
+          <p class="caselinks"><a href="https://github.com/Kunj2710/wikiflow">Code and full write-up →</a></p>
+        </aside>
+      </div>
+    </div>
+
+    <!-- CASE 2 -->
+    <div class="case">
+      <div class="case-head">
+        <h3>The most accurate model was the wrong one to ship</h3>
+        <span class="tag">Solo</span>
+      </div>
+      <p class="role">Cost-sensitive model selection for cardiovascular screening · 70,000 patients · BU MET CS 577</p>
+      <div class="grid">
+        <div class="body">
+          <p class="q">The problem</p>
+          <p>A primary-care doctor has about fifteen minutes to decide whether to refer a patient to a cardiologist. Standard practice in a modelling project is to train several classifiers and ship the most accurate one. That is the wrong objective here, because the two mistakes cost wildly different amounts: sending a sick patient home runs to roughly $150,000 in emergency care, while an unnecessary referral costs about $300.</p>
+          <p>A 500:1 asymmetry means accuracy, which weights both errors equally, cannot be the deciding metric.</p>
+
+          <div class="mine">
+            <p class="q">What I owned</p>
+            <p>All of it, and the framing most of all. Re-ranking six trained classifiers by expected clinical cost rather than accuracy <b>reverses the leaderboard</b>: KNN, fifth of six on accuracy, becomes the safest choice. I then stress-tested that conclusion instead of stopping at it, sweeping the false-negative cost from $25K to $200K (the ranking holds throughout), auditing every model for gender fairness, and injecting 20% measurement noise to see which models survive.</p>
+          </div>
+
+          <div class="broke">
+            <p class="q">What went wrong first</p>
+            <p>The raw data was worse than it looked. Eight sanity checks turned up blood pressures of 16,020 mmHg, negative diastolic values, heights of 250 cm, and ages stored in days. A clean-looking accuracy score sat on top of records that were physically impossible, so cleaning rules had to come before any model comparison was worth reading.</p>
+          </div>
+          <p>The practical finding for a fifteen-minute consult: blood pressure, cholesterol and age alone recover <b>99.5% of full-model accuracy</b>, so the screening version needs three measurements rather than thirteen.</p>
+        </div>
+        <aside>
+          <div class="metrics">
+            <dl>
+              <div><dt>Accuracy winner</dt><dd>Random Forest</dd></div>
+              <div><dt>Clinical cost winner</dt><dd>KNN (5th on acc.)</dd></div>
+              <div><dt>Saved per 10K patients</dt><dd>$9.71M</dd></div>
+              <div><dt>Missed diagnoses avoided</dt><dd>65</dd></div>
+              <div><dt>Holds across FN cost</dt><dd>$25K–$200K</dd></div>
+              <div><dt>3-feature model keeps</dt><dd>99.5% acc.</dd></div>
+            </dl>
+          </div>
+          <p class="stack"><span>scikit-learn</span><span>pandas</span><span>10-fold CV</span><span>fairness audit</span><span>sensitivity analysis</span></p>
+          <p class="caselinks"><a href="https://github.com/Kunj2710/cvd-referral-cost-classifier">Code and full write-up →</a></p>
+        </aside>
+      </div>
+    </div>
+
+    <!-- CASE 3 -->
+    <div class="case">
+      <div class="case-head">
+        <h3>Why SMOTE failed on 778 one-hot features</h3>
+        <span class="tag">Team of two</span>
+      </div>
+      <p class="role">Disability prediction on the 2023 American Housing Survey · with Jai Sharma · BU MET CS 699</p>
+      <div class="grid">
+        <div class="body">
+          <p class="q">The problem</p>
+          <p>Predict whether a U.S. household includes someone with a disability, from 144 Census survey variables where only 23% of households are positive. With that imbalance, a model that always answers "no" scores 76.6% accuracy and is useless.</p>
+
+          <div class="mine">
+            <p class="q">What I owned</p>
+            <p>Two pieces the rest of the project depended on. First, <b>variable typing from the codebook</b>: reading all 313 pages showed that 72% of the columns Python reports as numeric are actually category codes, where NOISE = 1 means yes and 2 means no. Standardising those as numbers would have corrupted every model downstream while still producing plausible-looking scores. That audit set the encoding strategy: 55 binary, 56 categorical, 32 genuinely numeric. Second, the <b>oversampling track</b> (SMOTE, ADASYN, SMOTE-75%, NearMiss) plus deep tuning of the gradient boosting and random forest models in phase three.</p>
+          </div>
+
+          <div class="broke">
+            <p class="q">What went wrong, and why it mattered</p>
+            <p>My oversampling models failed, consistently: 95%+ on the majority class but only 30–46% recall on the households we cared about. The useful part was working out why rather than dropping them. One-hot encoding pushes the data to 778 mostly binary dimensions; SMOTE interpolates between neighbours and produces fractional values for yes/no fields, inventing households that cannot exist. Euclidean distance across one-hot categories is close to meaningless, so its "nearest neighbours" aren't similar households at all. The synthetic data looks more separable than reality, and the models learn a boundary that doesn't survive contact with the test set.</p>
+          </div>
+          <p>Undersampling won by discarding half the majority class and keeping only real households, which is counter-intuitive until you see the numbers. That negative result is now the most useful paragraph in our report.</p>
+        </div>
+        <aside>
+          <div class="metrics">
+            <dl>
+              <div><dt>Model configurations tested</dt><dd>70+</dd></div>
+              <div><dt>Best: undersampling + GBM</dt><dd>AUC 0.842</dd></div>
+              <div><dt>Disability households found</dt><dd>73.6%</dd></div>
+              <div><dt>Others correctly cleared</dt><dd>78.3%</dd></div>
+              <div><dt>Oversampled models' recall</dt><dd>30–46%</dd></div>
+              <div><dt>Features after encoding</dt><dd>778</dd></div>
+            </dl>
+          </div>
+          <p class="stack"><span>scikit-learn</span><span>imbalanced-learn</span><span>XGBoost</span><span>GridSearchCV</span><span>pandas</span></p>
+          <p class="caselinks"><a href="https://github.com/Kunj2710/ahs-disability-prediction">Code and full write-up →</a></p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Also built</h2>
+    <p class="section-note">Smaller pieces, same habit: state the result, then say what the result cost to get right.</p>
+    <div class="more">
+      <article>
+        <h4>Cassandra vs MongoDB, 13M taxi trips</h4>
+        <span class="res">2.2× writes · 30× deletes · 5× aggregation</span>
+        <p>Four workloads on a GCP VM. My first run showed a 120× gap that contradicted every published result, because I was comparing Cassandra's synchronous writes against MongoDB's. Fixing the comparison was the finding: how you use a database matters as much as which one you pick.</p>
+        <a href="https://github.com/Kunj2710/cassandra-vs-mongodb-benchmark">Benchmark →</a>
+      </article>
+      <article>
+        <h4>RAG over PDFs, web, Wikipedia and arXiv</h4>
+        <span class="res">3 vector stores · 3 LLM backends · benchmarked</span>
+        <p>Rather than picking components by reputation, every layer is swappable and measured: Chroma vs FAISS vs ObjectBox, OpenAI vs Groq vs local. FAISS searched fastest, Chroma proved most stable and became the default. Streamlit UI and a FastAPI service on top.</p>
+        <a href="https://github.com/Kunj2710/rag-document-qa">Code →</a>
+      </article>
+      <article>
+        <h4>Can ML beat buy-and-hold?</h4>
+        <span class="res">3 of 10 strategies beat the market</span>
+        <p>Ten classifiers backtested as weekly trading strategies on five years of Coca-Cola. The two most profitable were the two least accurate, and an SVM with 68.9% accuracy never opened a position. Another reminder that the training metric is not the objective.</p>
+        <a href="https://github.com/Kunj2710/stock-trading-ml-backtest">Backtest →</a>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <h2>How I work</h2>
+    <div class="principles">
+      <div>
+        <h4>Pick the metric that matches the cost</h4>
+        <p>Accuracy is usually the easiest metric and rarely the right one. The question I ask first is what each kind of mistake costs the person on the other end.</p>
+        <span class="ex">→ KNN over Random Forest: $9.7M per 10K patients</span>
+      </div>
+      <div>
+        <h4>Distrust a result that flatters you</h4>
+        <p>A surprising number is a reason to check the setup, not to celebrate. Twice now the check overturned the headline, and both times the corrected version was the more interesting finding.</p>
+        <span class="ex">→ the 120× database gap that was my own bug</span>
+      </div>
+      <div>
+        <h4>Do the unglamorous data work first</h4>
+        <p>Codebooks, impossible values, leakage. These decide whether a model means anything, and they are invisible in the final score, which is exactly why they get skipped.</p>
+        <span class="ex">→ 72% of "numeric" Census columns were category codes</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Experience</h2>
+    <div class="exp">
+      <div class="when">May 2026 – present</div>
+      <div><h4>Data Analyst · Boston University IT Help Center</h4>
+        <p>Weekly and monthly Power BI dashboards adopted by help-desk leadership; prototyped an AI-assisted triage layer for routine tickets. Led the team in call volume for three consecutive weeks while building it.</p></div>
+    </div>
+    <div class="exp">
+      <div class="when">May – Sep 2024</div>
+      <div><h4>Software Developer · Artem HealthTech</h4>
+        <p>Hospital information system used by 1,000+ municipal healthcare workers. Query optimisation cut page loads 35%; a Redis caching layer cut database load 40% and $3,000/month of infrastructure cost. Redesigned 8 clinical workflows, saving clinicians about 45 minutes a day.</p></div>
+    </div>
+    <div class="exp">
+      <div class="when">Jan – May 2024</div>
+      <div><h4>Project Manager · Wellnest Tech</h4>
+        <p>Angular and .NET sales analytics platform for 200+ daily users. Promoted from intern after three months to lead five developers. Eight executive dashboards surfaced $50K in recoverable revenue; CI/CD took deployments from 3 days to 4 hours.</p></div>
+    </div>
+    <div class="exp">
+      <div class="when">Jul – Aug 2023</div>
+      <div><h4>Software Developer Intern · Telnet</h4>
+        <p>Recipe platform in Angular for 500+ beta users; one-click cart reached 70% adoption within two weeks.</p></div>
+    </div>
+    <div class="exp">
+      <div class="when">2025 – Dec 2026</div>
+      <div><h4>M.S. Applied Data Analytics · Boston University</h4>
+        <p>GPA 3.8. Big Data Analytics, Data Mining, Data Science with Python, Database Design. B.E. Information Technology, Gujarat Technological University (GPA 3.7).</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <div>
+      <p class="big">Looking for data science, ML and data engineering roles.</p>
+      <p><a href="mailto:kunjpatel271002@gmail.com">kunjpatel271002@gmail.com</a> · <a href="https://linkedin.com/in/kunj2710">LinkedIn</a> · <a href="https://github.com/Kunj2710">GitHub</a></p>
+    </div>
+    <p class="fine">Every number here comes from a public repo or the paper.</p>
+  </footer>
+</div>
