@@ -1,340 +1,517 @@
 <title>Kunj Patel, Data Scientist</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@500;600;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=Azeret+Mono:wght@400;500&family=Public+Sans:wght@400;600&display=swap">
 <style>
   :root{
-    --paper:#fbfbf8; --ink:#111417; --ink-2:#4d565e; --ink-3:#7c868f;
-    --rule:#e2e2db; --card:#ffffff; --accent:#1447c4; --accent-2:#0d7a66;
-    --flag:#9a4a16; --flag-bg:#fbf1e7; --good-bg:#e9f3ef;
-    --sans:'Libre Franklin',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,sans-serif;
-    --serif:'Source Serif 4','Iowan Old Style',Georgia,serif;
-    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
-  }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      color-scheme:dark;
-      --paper:#0f1214; --ink:#e9ecee; --ink-2:#a5aeb5; --ink-3:#7b858c;
-      --rule:#252b2e; --card:#161a1d; --accent:#6f9dff; --accent-2:#4fc4aa;
-      --flag:#e0a76a; --flag-bg:#241c12; --good-bg:#122420;
-    }
-  }
-  :root[data-theme="dark"]{
     color-scheme:dark;
-    --paper:#0f1214; --ink:#e9ecee; --ink-2:#a5aeb5; --ink-3:#7b858c;
-    --rule:#252b2e; --card:#161a1d; --accent:#6f9dff; --accent-2:#4fc4aa;
-    --flag:#e0a76a; --flag-bg:#241c12; --good-bg:#122420;
+    --bg:#08090c; --panel:#10131a; --panel-2:#161b24; --line:#222834;
+    --ink:#e8ecf2; --ink-2:#98a3b3; --ink-3:#5f6b7d;
+    --cyan:#3ddcff; --pink:#ff5d7e; --lime:#c9f24d; --amber:#ffb545;
+    --disp:'Archivo',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,sans-serif;
+    --body:'Public Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,sans-serif;
+    --mono:'Azeret Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
   }
-  body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:17px;line-height:1.62;}
-  .page{max-width:1080px;margin:0 auto;padding-inline:22px;padding-block:0 72px;}
-  a{color:var(--accent);text-underline-offset:3px;}
-  h1,h2,h3,.sans{font-family:var(--sans);}
+  body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;}
+  .wrap{max-width:1140px;margin:0 auto;padding-inline:24px;}
+  a{color:var(--cyan);text-decoration:none;border-bottom:1px solid rgba(61,220,255,.35);}
+  a:hover{border-bottom-color:var(--cyan);}
+  h1,h2,h3,h4,.disp{font-family:var(--disp);letter-spacing:-.02em;}
+  .mono{font-family:var(--mono);}
 
-  /* header */
-  header{padding-block:56px 30px;border-bottom:1px solid var(--rule);}
-  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-2);margin:0 0 14px;}
-  h1{font-size:clamp(34px,6vw,52px);line-height:1.04;font-weight:800;letter-spacing:-.02em;margin:0 0 14px;text-wrap:balance;}
-  .lede{font-size:clamp(18px,2.4vw,21px);color:var(--ink-2);max-width:60ch;margin:0 0 26px;}
-  .lede b{color:var(--ink);font-weight:600;}
-  .links{display:flex;flex-wrap:wrap;gap:10px;font-family:var(--sans);font-size:14px;}
-  .links a{display:inline-block;padding:7px 13px;border:1px solid var(--rule);border-radius:2px;text-decoration:none;color:var(--ink);background:var(--card);}
-  .links a:hover{border-color:var(--accent);color:var(--accent);}
-  .links a.primary{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  /* ---------- nav ---------- */
+  nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:rgba(8,9,12,.82);
+      backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:16px;}
+  nav .me{font-family:var(--disp);font-weight:900;font-size:15px;letter-spacing:.01em;}
+  nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;font-family:var(--mono);font-size:11.5px;
+         letter-spacing:.08em;text-transform:uppercase;}
+  nav a{color:var(--ink-3);border:none;}
+  nav a:hover,nav a.on{color:var(--ink);}
+  nav a.on{text-shadow:0 0 18px rgba(61,220,255,.5);}
+  @media (max-width:720px){nav ul{display:none;}}
 
-  /* proof strip */
-  .proof{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-bottom:1px solid var(--rule);}
-  .proof div{padding:22px 20px 22px 0;border-right:1px solid var(--rule);}
-  .proof div:last-child{border-right:none;padding-right:0;}
-  .proof .n{font-family:var(--mono);font-size:22px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;display:block;}
-  .proof .t{font-family:var(--sans);font-size:13.5px;color:var(--ink-2);line-height:1.4;display:block;margin-top:4px;}
+  /* ---------- hero ---------- */
+  .hero{position:relative;padding-block:64px 0;overflow:hidden;}
+  #stream{position:absolute;inset:0;width:100%;height:100%;opacity:.55;}
+  .hero .wrap{position:relative;z-index:2;}
+  .kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin:0 0 18px;}
+  h1{font-size:clamp(40px,8.5vw,88px);line-height:.96;font-weight:900;margin:0 0 20px;text-wrap:balance;}
+  h1 em{font-style:normal;color:var(--ink-3);}
+  .sub{font-size:clamp(17px,2.2vw,20px);color:var(--ink-2);max-width:56ch;margin:0 0 26px;}
+  .sub b{color:var(--ink);font-weight:600;}
+  .cta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:34px;font-family:var(--mono);font-size:12.5px;}
+  .cta a{border:1px solid var(--line);padding:9px 14px;color:var(--ink);background:var(--panel);}
+  .cta a:hover{border-color:var(--cyan);color:var(--cyan);}
+  .cta a.key{background:var(--cyan);color:#04121a;border-color:var(--cyan);font-weight:500;}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;color:var(--ink-3);
+          border-top:1px solid var(--line);padding:14px 0 30px;letter-spacing:.04em;}
+  .dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:7px;vertical-align:middle;}
+  .counter{color:var(--ink-2);}
+  .counter b{color:var(--ink);font-weight:500;}
 
-  section{padding-block:52px 0;}
-  h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin:0 0 6px;}
-  .section-note{color:var(--ink-2);font-size:15.5px;margin:0 0 30px;max-width:62ch;}
+  /* ---------- section frame ---------- */
+  section{padding-block:76px 0;}
+  .label{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+         display:flex;align-items:center;gap:14px;margin:0 0 28px;}
+  .label::after{content:"";flex:1;height:1px;background:var(--line);}
+  .intro{color:var(--ink-2);max-width:64ch;margin:-14px 0 36px;}
 
-  /* case study */
-  .case{border-top:2px solid var(--ink);padding-block:26px 40px;}
-  .case-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:4px;}
-  .case h3{font-size:clamp(23px,3.4vw,30px);font-weight:700;letter-spacing:-.015em;margin:0;line-height:1.15;}
-  .tag{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:4px 8px;border-radius:2px;background:var(--good-bg);color:var(--accent-2);white-space:nowrap;}
-  .role{font-family:var(--sans);font-size:13.5px;color:var(--ink-3);margin:0 0 18px;}
-  .grid{display:grid;grid-template-columns:1.25fr 1fr;gap:34px;align-items:start;}
-  .grid>*{min-width:0;}
-  .proof div{min-width:0;}
-  .q{font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--ink-3);margin:0 0 6px;text-transform:uppercase;}
-  .body p{margin:0 0 16px;}
-  .metrics{border:1px solid var(--rule);background:var(--card);border-radius:3px;padding:4px 18px;}
-  .metrics dl{margin:0;}
-  .metrics div{display:flex;justify-content:space-between;gap:14px;padding:11px 0;border-bottom:1px solid var(--rule);align-items:baseline;flex-wrap:wrap;}
-  .metrics div:last-child{border-bottom:none;}
-  .metrics dt{font-family:var(--sans);font-size:13.5px;color:var(--ink-2);min-width:0;overflow-wrap:anywhere;}
-  .metrics dd{margin:0;font-family:var(--mono);font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;}
-  .mine{border-left:3px solid var(--accent-2);padding:2px 0 2px 16px;margin:0 0 18px;}
-  .broke{background:var(--flag-bg);border-radius:3px;padding:16px 18px;margin:0 0 18px;}
-  .broke .q{color:var(--flag);}
-  .stack{font-family:var(--mono);font-size:12px;color:var(--ink-3);margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;}
-  .stack span{border:1px solid var(--rule);padding:3px 7px;border-radius:2px;white-space:nowrap;}
-  .caselinks{font-family:var(--sans);font-size:14px;margin:16px 0 0;display:flex;gap:18px;flex-wrap:wrap;}
+  /* ---------- case ---------- */
+  .case{border-top:1px solid var(--line);padding-block:44px;}
+  .case-top{display:flex;gap:16px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;margin-bottom:8px;}
+  .case h3{font-size:clamp(26px,4.2vw,40px);line-height:1.06;font-weight:700;margin:0;max-width:20ch;}
+  .badge{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--lime);
+         border:1px solid rgba(201,242,77,.3);padding:5px 9px;white-space:nowrap;}
+  .who{font-family:var(--mono);font-size:12px;color:var(--ink-3);margin:0 0 26px;}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;}
+  .cols>*{min-width:0;}
+  .cols p{margin:0 0 16px;color:var(--ink-2);}
+  .cols p b,.cols p strong{color:var(--ink);font-weight:600;}
+  .mark{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin:26px 0 8px;}
+  .mark.mine{color:var(--cyan);}
+  .mark.broke{color:var(--amber);}
+  .mine-body{border-left:2px solid rgba(61,220,255,.4);padding-left:18px;}
+  .broke-body{border-left:2px solid rgba(255,181,69,.4);padding-left:18px;}
+  .stack{display:flex;flex-wrap:wrap;gap:6px;margin:24px 0 0;font-family:var(--mono);font-size:11px;color:var(--ink-3);}
+  .stack span{border:1px solid var(--line);padding:4px 8px;}
+  .golink{font-family:var(--mono);font-size:12.5px;margin-top:18px;display:inline-block;}
 
-  /* compact cards */
-  .more{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);}
-  .more article{background:var(--card);padding:22px 20px;}
-  .more h4{font-family:var(--sans);font-size:17px;margin:0 0 8px;font-weight:600;line-height:1.25;}
-  .more p{font-size:15px;color:var(--ink-2);margin:0 0 12px;}
-  .more .res{font-family:var(--mono);font-size:12.5px;color:var(--accent-2);display:block;margin-bottom:10px;}
-  .more a{font-family:var(--sans);font-size:13.5px;}
+  /* ---------- live widgets ---------- */
+  .live{background:var(--panel);border:1px solid var(--line);position:relative;}
+  .live-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line);}
+  .live-head .t{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);}
+  .live-head .pulse{font-family:var(--mono);font-size:10.5px;color:var(--lime);display:flex;align-items:center;gap:7px;}
+  .live-head .pulse i{width:6px;height:6px;border-radius:50%;background:var(--lime);display:inline-block;}
+  @media (prefers-reduced-motion:no-preference){.live-head .pulse i{animation:blink 1.8s infinite;}}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+  .live-body{padding:18px 16px 20px;}
+  .slider-row{display:flex;align-items:center;gap:14px;margin-bottom:6px;flex-wrap:wrap;}
+  .slider-row label{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);letter-spacing:.06em;}
+  .slider-row output{font-family:var(--mono);font-size:19px;color:var(--ink);font-variant-numeric:tabular-nums;font-weight:500;}
+  input[type=range]{flex:1;min-width:180px;accent-color:var(--cyan);height:22px;}
+  .hint{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);margin:0 0 16px;}
+  .rank{display:grid;gap:8px;}
+  .row{display:grid;grid-template-columns:20px 1fr auto;gap:10px;align-items:center;font-family:var(--mono);font-size:12px;
+       transition:transform .45s cubic-bezier(.2,.7,.3,1);}
+  @media (prefers-reduced-motion:reduce){.row{transition:none;}}
+  .row .pos{color:var(--ink-3);}
+  .row .bar{position:relative;height:22px;background:var(--panel-2);overflow:hidden;}
+  .row .fill{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,rgba(61,220,255,.22),rgba(61,220,255,.5));
+             transition:width .5s cubic-bezier(.2,.7,.3,1);}
+  .row .nm{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:var(--ink);white-space:nowrap;}
+  .row .val{color:var(--ink-2);font-variant-numeric:tabular-nums;}
+  .row.lead .fill{background:linear-gradient(90deg,rgba(201,242,77,.25),rgba(201,242,77,.55));}
+  .row.lead .val{color:var(--lime);}
+  .verdict{margin:20px 0 0;padding-top:14px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11.5px;color:var(--ink-2);line-height:1.7;}
+  .verdict b{color:var(--lime);font-weight:500;}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px;}
+  .chip{font-family:var(--mono);font-size:11px;padding:6px 10px;border:1px solid var(--line);background:var(--panel-2);
+        color:var(--ink-2);cursor:pointer;}
+  .chip[aria-pressed=true]{border-color:var(--cyan);color:var(--cyan);}
+  .chip:focus-visible{outline:2px solid var(--cyan);outline-offset:2px;}
+  canvas{display:block;width:100%;}
+  .cap{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);margin:10px 0 0;line-height:1.6;}
 
-  /* how i work */
-  .principles{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
-  .principles h4{font-family:var(--sans);font-size:18px;margin:0 0 8px;font-weight:600;}
-  .principles p{font-size:15.5px;color:var(--ink-2);margin:0;}
-  .principles .ex{display:block;margin-top:10px;font-family:var(--mono);font-size:12px;color:var(--ink-3);}
+  /* ---------- small work ---------- */
+  .small{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .small article{border:1px solid var(--line);padding:22px 20px;background:var(--panel);}
+  .small h4{font-size:19px;margin:0 0 10px;font-weight:700;}
+  .small .r{font-family:var(--mono);font-size:11.5px;color:var(--lime);display:block;margin-bottom:12px;}
+  .small p{color:var(--ink-2);font-size:15px;margin:0 0 14px;}
+  .small a{font-family:var(--mono);font-size:12px;}
 
-  /* experience */
-  .exp{border-top:1px solid var(--rule);padding:18px 0;display:grid;grid-template-columns:150px 1fr;gap:24px;}
-  .exp .when{font-family:var(--mono);font-size:12.5px;color:var(--ink-3);padding-top:3px;}
-  .exp h4{font-family:var(--sans);font-size:17px;margin:0 0 6px;font-weight:600;}
-  .exp p{margin:0;font-size:15.5px;color:var(--ink-2);}
+  /* ---------- work history ---------- */
+  .job{display:grid;grid-template-columns:132px 1fr;gap:26px;border-top:1px solid var(--line);padding:20px 0;}
+  .job .yr{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);padding-top:4px;}
+  .job h4{font-size:17px;margin:0 0 6px;font-weight:700;}
+  .job p{margin:0;color:var(--ink-2);font-size:15px;}
 
-  footer{margin-top:64px;border-top:2px solid var(--ink);padding-top:26px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:flex-end;}
-  footer .big{font-family:var(--sans);font-size:clamp(20px,3vw,26px);font-weight:700;margin:0 0 8px;}
-  footer p{margin:0;color:var(--ink-2);font-size:15px;}
-  .fine{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);}
+  /* ---------- end ---------- */
+  footer{margin-top:80px;border-top:1px solid var(--line);padding-block:40px 60px;}
+  footer h2{font-size:clamp(26px,5vw,44px);font-weight:900;margin:0 0 16px;line-height:1.05;}
+  footer .links{display:flex;gap:10px;flex-wrap:wrap;font-family:var(--mono);font-size:12.5px;}
+  footer .fine{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);margin-top:26px;}
 
-  @media (max-width:820px){
-    .grid{grid-template-columns:1fr;gap:22px;}
-    .more,.principles{grid-template-columns:1fr;}
-    .proof{grid-template-columns:1fr;}
-    .proof div{border-right:none;border-bottom:1px solid var(--rule);padding:16px 0;}
-    .proof div:last-child{border-bottom:none;}
-    .exp{grid-template-columns:1fr;gap:6px;}
+  @media (max-width:860px){
+    .cols{grid-template-columns:1fr;gap:26px;}
+    .small{grid-template-columns:1fr;}
+    .job{grid-template-columns:1fr;gap:4px;}
   }
 </style>
 
-<div class="page">
-  <header>
-    <p class="eyebrow">Boston, MA · open to 2027 roles</p>
-    <h1>Kunj Patel</h1>
-    <p class="lede">I build data systems end to end, from a <b>25 GB Spark pipeline</b> to the model and the dashboard someone actually opens. Currently finishing an M.S. in Applied Data Analytics at Boston University. Before that, a year shipping production software that hospitals and sales teams used daily.</p>
-    <p class="links">
-      <a class="primary" href="mailto:kunjpatel271002@gmail.com">kunjpatel271002@gmail.com</a>
+<nav>
+  <div class="wrap">
+    <span class="me">KUNJ PATEL</span>
+    <ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#more">More</a></li>
+      <li><a href="#history">History</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="mono" style="font-size:11.5px;color:var(--ink-3);border:none" href="mailto:kunjpatel271002@gmail.com">Email →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <canvas id="stream" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <p class="kicker">Boston · M.S. Applied Data Analytics, Boston University</p>
+    <h1>I find the number<br>everyone else<br><em>measured wrong.</em></h1>
+    <p class="sub">Data scientist working on distributed ML and cost-aware model selection. My paper on predicting Wikipedia editor dropout across <b>60M revision events</b> is at <b>EAI CSECS 2026</b>. Before grad school, a year shipping software hospitals used daily.</p>
+    <p class="cta">
+      <a class="key" href="#work">See the work</a>
       <a href="https://github.com/Kunj2710">GitHub</a>
       <a href="https://linkedin.com/in/kunj2710">LinkedIn</a>
-      <a href="https://csecs-conf.eai-conferences.org/2026/">CSECS 2026 paper</a>
+      <a href="mailto:kunjpatel271002@gmail.com">Email</a>
     </p>
-  </header>
-
-  <div class="proof">
-    <div><span class="n">60M+</span><span class="t">Wikipedia revision events processed on Spark, in a paper accepted at EAI CSECS 2026</span></div>
-    <div><span class="n">1,000+</span><span class="t">healthcare workers used the hospital system I maintained; 35% faster page loads</span></div>
-    <div><span class="n">100+</span><span class="t">models trained and compared across five projects, each judged on the metric that matters</span></div>
+    <p class="legend">
+      <span><span class="dot" style="background:var(--cyan)"></span>predicted to stay</span>
+      <span><span class="dot" style="background:var(--pink)"></span>predicted to drop out</span>
+      <span class="counter">edits scored: <b id="ctr">0</b></span>
+      <span>live demo of the streaming scorer, AUC 0.909</span>
+    </p>
   </div>
+</div>
 
-  <section>
-    <h2>Selected work</h2>
-    <p class="section-note">Three projects in depth. Each one says what it had to get right, what I owned, and what went wrong on the first attempt, because that part is usually where the work actually happened.</p>
+<div class="wrap">
+  <section id="work">
+    <p class="label">Selected work</p>
+    <p class="intro">Three projects in depth. Each says what it had to get right, which part was mine, and what went wrong first, because that is usually where the work actually was. Two of them you can poke at.</p>
 
-    <!-- CASE 1 -->
-    <div class="case">
-      <div class="case-head">
+    <!-- ============ CASE 1 ============ -->
+    <article class="case">
+      <div class="case-top">
         <h3>Predicting Wikipedia editor dropout at scale</h3>
-        <span class="tag">Paper · CSECS 2026</span>
+        <span class="badge">Paper · CSECS 2026</span>
       </div>
-      <p class="role">Co-author with Aryan Meena, advised by Prof. F. Alizadeh-Sabdiz · accepted at EAI CSECS 2026, Boston, Nov 3–5 · Springer LNICST</p>
-      <div class="grid">
-        <div class="body">
-          <p class="q">The problem</p>
-          <p>Wikipedia runs on volunteers, and most newcomers stop editing within months. The Wikimedia Foundation funds research on this because article coverage depends on it. Earlier studies ran on a single machine, which capped them at samples small enough to fit in memory.</p>
-          <p>We asked whether an editor's <b>first ten edits</b> predict whether they will be gone six months later, across the full English Wikipedia history from 2021 to 2025: 25 GB compressed, 60 million revision events, 1.15 million editors. That is roughly ten times the scale of prior single-machine work.</p>
-
-          <div class="mine">
-            <p class="q">What I owned</p>
-            <p>The <b>feature representation and the model benchmark</b>. I designed the 13-feature behavioural vector and the rule that made it defensible: every feature has to be computable from an editor's first ten edits alone. Anything drawn from their later history would leak the outcome we were predicting and quietly inflate our numbers. I then implemented and benchmarked the three models, including logistic regression and K-Means written directly on Spark RDDs rather than called from MLlib, so the comparison was ours end to end.</p>
+      <p class="who">with Aryan Meena, advised by Prof. F. Alizadeh-Sabdiz · Boston, Nov 3–5 · Springer LNICST</p>
+      <div class="cols">
+        <div>
+          <p>Wikipedia runs on volunteers and keeps losing its newcomers. Prior studies fit on one machine, which capped them at small samples. We asked whether an editor's <b>first ten edits</b> predict whether they are gone six months later, across the full English history from 2021 to 2025: 25 GB compressed, 60 million revision events, 1.15 million editors. Roughly ten times the scale of previous single-machine work.</p>
+          <p class="mark mine">My part</p>
+          <div class="mine-body">
+            <p>The feature representation and the model benchmark. I designed the 13-feature behavioural vector and the constraint that makes it defensible: every feature computable from the first ten edits alone. Anything from an editor's later history leaks the outcome and quietly inflates the score. Then I implemented the three models, with logistic regression and K-Means written on Spark RDDs rather than called from MLlib.</p>
           </div>
-
-          <div class="broke">
-            <p class="q">What made it hard</p>
-            <p>Scale changes which mistakes are cheap. A leaky feature on a laptop costs a rerun; here a full pass over 60 million events costs cluster time, so the feature set had to be right before the first run rather than after. The live scorer brought the opposite problem: a streaming event has no window around it, so features defined over an editor's history had to be replaced with single-event proxies that keep the same schema the batch models were trained on.</p>
+          <p class="mark broke">What made it hard</p>
+          <div class="broke-body">
+            <p>Scale changes which mistakes are cheap. A leaky feature on a laptop costs a rerun; here a full pass over 60 million events costs cluster time, so the feature set had to be right before the first run. Streaming brought the opposite problem: a live event has no window around it, so history-based features needed single-event proxies that keep the schema the batch models trained on.</p>
           </div>
-          <p>The result is the first reproducible, fully cloud-native benchmark for this problem at this scale. Same features, two paths: batch training on Dataproc, and a live scorer reading Wikipedia's edit stream through Kafka with end-to-end latency under a minute.</p>
+          <p class="stack"><span>PySpark</span><span>Kafka</span><span>Elephas</span><span>Keras</span><span>Dataproc</span><span>BigQuery</span></p>
+          <a class="golink" href="https://github.com/Kunj2710/wikiflow">Code and write-up →</a>
         </div>
-        <aside>
-          <div class="metrics">
-            <dl>
-              <div><dt>Distributed Keras DNN (Elephas)</dt><dd>AUC 0.909</dd></div>
-              <div><dt>Logistic regression, RDD from scratch</dt><dd>AUC 0.845</dd></div>
-              <div><dt>Gain over baseline</dt><dd>+6.4 pts</dd></div>
-              <div><dt>Editors analysed</dt><dd>1.15M</dd></div>
-              <div><dt>Revision events</dt><dd>60M+</dd></div>
-              <div><dt>Live scoring latency</dt><dd>&lt; 60 s</dd></div>
-            </dl>
+        <div class="live">
+          <div class="live-head"><span class="t">Model comparison</span><span class="pulse"><i></i>held-out editors</span></div>
+          <div class="live-body">
+            <canvas id="aucChart" height="260" aria-label="AUC comparison: distributed DNN 0.909, logistic regression 0.845, random baseline 0.5"></canvas>
+            <p class="cap">The distributed Keras network beats our from-scratch logistic regression by 6.4 points. Both were trained on the same leakage-free 13-feature vectors, so the gap is the model, not the data.</p>
           </div>
-          <p class="stack"><span>PySpark</span><span>Kafka</span><span>Elephas</span><span>Keras</span><span>GCP Dataproc</span><span>BigQuery</span><span>Structured Streaming</span></p>
-          <p class="caselinks"><a href="https://github.com/Kunj2710/wikiflow">Code and full write-up →</a></p>
-        </aside>
+        </div>
       </div>
-    </div>
+    </article>
 
-    <!-- CASE 2 -->
-    <div class="case">
-      <div class="case-head">
+    <!-- ============ CASE 2 ============ -->
+    <article class="case">
+      <div class="case-top">
         <h3>The most accurate model was the wrong one to ship</h3>
-        <span class="tag">Solo</span>
+        <span class="badge">Solo</span>
       </div>
-      <p class="role">Cost-sensitive model selection for cardiovascular screening · 70,000 patients · BU MET CS 577</p>
-      <div class="grid">
-        <div class="body">
-          <p class="q">The problem</p>
-          <p>A primary-care doctor has about fifteen minutes to decide whether to refer a patient to a cardiologist. Standard practice in a modelling project is to train several classifiers and ship the most accurate one. That is the wrong objective here, because the two mistakes cost wildly different amounts: sending a sick patient home runs to roughly $150,000 in emergency care, while an unnecessary referral costs about $300.</p>
-          <p>A 500:1 asymmetry means accuracy, which weights both errors equally, cannot be the deciding metric.</p>
-
-          <div class="mine">
-            <p class="q">What I owned</p>
-            <p>All of it, and the framing most of all. Re-ranking six trained classifiers by expected clinical cost rather than accuracy <b>reverses the leaderboard</b>: KNN, fifth of six on accuracy, becomes the safest choice. I then stress-tested that conclusion instead of stopping at it, sweeping the false-negative cost from $25K to $200K (the ranking holds throughout), auditing every model for gender fairness, and injecting 20% measurement noise to see which models survive.</p>
+      <p class="who">cost-sensitive model selection · 70,000 patients · BU MET CS 577</p>
+      <div class="cols">
+        <div>
+          <p>A doctor has about fifteen minutes to decide whether to refer a patient to a cardiologist. The usual move is to train several classifiers and ship the most accurate. That is the wrong objective here: sending a sick patient home costs roughly <b>$150,000</b> in emergency care, an unnecessary referral about <b>$300</b>. Accuracy weights both errors equally, so it cannot be the deciding metric.</p>
+          <p class="mark mine">My part</p>
+          <div class="mine-body">
+            <p>All of it, and the framing most of all. Re-ranking the six trained models by expected cost <b>reverses the leaderboard</b>. Then I stress-tested that instead of stopping at it: sweeping the false-negative cost from $25K to $200K, auditing every model for gender fairness, and injecting 20% measurement noise to see which survive. Drag the slider and watch the ranking move.</p>
           </div>
-
-          <div class="broke">
-            <p class="q">What went wrong first</p>
-            <p>The raw data was worse than it looked. Eight sanity checks turned up blood pressures of 16,020 mmHg, negative diastolic values, heights of 250 cm, and ages stored in days. A clean-looking accuracy score sat on top of records that were physically impossible, so cleaning rules had to come before any model comparison was worth reading.</p>
+          <p class="mark broke">What went wrong first</p>
+          <div class="broke-body">
+            <p>The raw data was worse than it looked. Eight checks turned up blood pressures of 16,020 mmHg, negative diastolic values, heights of 250 cm and ages stored in days. Clean-looking accuracy sat on top of physically impossible records, so the cleaning rules had to come before any comparison was worth reading.</p>
           </div>
-          <p>The practical finding for a fifteen-minute consult: blood pressure, cholesterol and age alone recover <b>99.5% of full-model accuracy</b>, so the screening version needs three measurements rather than thirteen.</p>
+          <p class="stack"><span>scikit-learn</span><span>pandas</span><span>10-fold CV</span><span>fairness audit</span></p>
+          <a class="golink" href="https://github.com/Kunj2710/cvd-referral-cost-classifier">Code and write-up →</a>
         </div>
-        <aside>
-          <div class="metrics">
-            <dl>
-              <div><dt>Accuracy winner</dt><dd>Random Forest</dd></div>
-              <div><dt>Clinical cost winner</dt><dd>KNN (5th on acc.)</dd></div>
-              <div><dt>Saved per 10K patients</dt><dd>$9.71M</dd></div>
-              <div><dt>Missed diagnoses avoided</dt><dd>65</dd></div>
-              <div><dt>Holds across FN cost</dt><dd>$25K–$200K</dd></div>
-              <div><dt>3-feature model keeps</dt><dd>99.5% acc.</dd></div>
-            </dl>
+        <div class="live">
+          <div class="live-head"><span class="t">Cost-ranked leaderboard</span><span class="pulse"><i></i>per 10,000 patients</span></div>
+          <div class="live-body">
+            <div class="slider-row">
+              <label for="fn">Cost of one missed diagnosis</label>
+              <output id="fnOut">$150,000</output>
+            </div>
+            <input id="fn" type="range" min="25000" max="200000" step="5000" value="150000">
+            <p class="hint">False positive fixed at $300 · drag to re-rank</p>
+            <div class="rank" id="rank"></div>
+            <p class="verdict" id="verdict"></p>
           </div>
-          <p class="stack"><span>scikit-learn</span><span>pandas</span><span>10-fold CV</span><span>fairness audit</span><span>sensitivity analysis</span></p>
-          <p class="caselinks"><a href="https://github.com/Kunj2710/cvd-referral-cost-classifier">Code and full write-up →</a></p>
-        </aside>
+        </div>
       </div>
-    </div>
+    </article>
 
-    <!-- CASE 3 -->
-    <div class="case">
-      <div class="case-head">
+    <!-- ============ CASE 3 ============ -->
+    <article class="case">
+      <div class="case-top">
         <h3>Why SMOTE failed on 778 one-hot features</h3>
-        <span class="tag">Team of two</span>
+        <span class="badge">Team of two</span>
       </div>
-      <p class="role">Disability prediction on the 2023 American Housing Survey · with Jai Sharma · BU MET CS 699</p>
-      <div class="grid">
-        <div class="body">
-          <p class="q">The problem</p>
-          <p>Predict whether a U.S. household includes someone with a disability, from 144 Census survey variables where only 23% of households are positive. With that imbalance, a model that always answers "no" scores 76.6% accuracy and is useless.</p>
-
-          <div class="mine">
-            <p class="q">What I owned</p>
-            <p>Two pieces the rest of the project depended on. First, <b>variable typing from the codebook</b>: reading all 313 pages showed that 72% of the columns Python reports as numeric are actually category codes, where NOISE = 1 means yes and 2 means no. Standardising those as numbers would have corrupted every model downstream while still producing plausible-looking scores. That audit set the encoding strategy: 55 binary, 56 categorical, 32 genuinely numeric. Second, the <b>oversampling track</b> (SMOTE, ADASYN, SMOTE-75%, NearMiss) plus deep tuning of the gradient boosting and random forest models in phase three.</p>
+      <p class="who">disability prediction, 2023 American Housing Survey · with Jai Sharma · BU MET CS 699</p>
+      <div class="cols">
+        <div>
+          <p>Predict whether a U.S. household includes someone with a disability, from 144 Census variables where only 23% are positive. At that imbalance a model that always answers "no" scores 76.6% and is useless. We ran 70+ configurations: five balancing methods, nine classifiers, three tuning phases.</p>
+          <p class="mark mine">My part</p>
+          <div class="mine-body">
+            <p>Two pieces the rest depended on. Reading all 313 pages of the codebook showed that <b>72% of the columns Python calls numeric are category codes</b>, where NOISE = 1 means yes and 2 means no. Standardising those as numbers corrupts every model downstream while still producing plausible scores. That audit set the encoding: 55 binary, 56 categorical, 32 genuinely numeric. I also owned the oversampling track and the deep tuning of gradient boosting and random forest.</p>
           </div>
-
-          <div class="broke">
-            <p class="q">What went wrong, and why it mattered</p>
-            <p>My oversampling models failed, consistently: 95%+ on the majority class but only 30–46% recall on the households we cared about. The useful part was working out why rather than dropping them. One-hot encoding pushes the data to 778 mostly binary dimensions; SMOTE interpolates between neighbours and produces fractional values for yes/no fields, inventing households that cannot exist. Euclidean distance across one-hot categories is close to meaningless, so its "nearest neighbours" aren't similar households at all. The synthetic data looks more separable than reality, and the models learn a boundary that doesn't survive contact with the test set.</p>
+          <p class="mark broke">What went wrong, and why it mattered</p>
+          <div class="broke-body">
+            <p>My oversampled models failed consistently: 95%+ on the majority class, 30–46% recall on the households we cared about. The useful part was working out why. One-hot encoding pushes the data into 778 mostly binary dimensions, and SMOTE interpolates between neighbours, producing fractions for yes/no fields: households that cannot exist. Undersampling won by keeping only real rows. That negative result is now the most useful paragraph in our report.</p>
           </div>
-          <p>Undersampling won by discarding half the majority class and keeping only real households, which is counter-intuitive until you see the numbers. That negative result is now the most useful paragraph in our report.</p>
+          <p class="stack"><span>scikit-learn</span><span>imbalanced-learn</span><span>XGBoost</span><span>GridSearchCV</span></p>
+          <a class="golink" href="https://github.com/Kunj2710/ahs-disability-prediction">Code and write-up →</a>
         </div>
-        <aside>
-          <div class="metrics">
-            <dl>
-              <div><dt>Model configurations tested</dt><dd>70+</dd></div>
-              <div><dt>Best: undersampling + GBM</dt><dd>AUC 0.842</dd></div>
-              <div><dt>Disability households found</dt><dd>73.6%</dd></div>
-              <div><dt>Others correctly cleared</dt><dd>78.3%</dd></div>
-              <div><dt>Oversampled models' recall</dt><dd>30–46%</dd></div>
-              <div><dt>Features after encoding</dt><dd>778</dd></div>
-            </dl>
+        <div class="live">
+          <div class="live-head"><span class="t">What SMOTE invents</span><span class="pulse"><i></i>one-hot space</span></div>
+          <div class="live-body">
+            <div class="chips">
+              <button class="chip" id="smoteBtn" aria-pressed="false">Generate synthetic households</button>
+              <button class="chip" id="resetBtn">Reset</button>
+            </div>
+            <canvas id="smote" height="250" aria-label="Scatter of real households at one-hot corners versus synthetic points with impossible fractional values"></canvas>
+            <p class="cap" id="smoteCap">Real households sit at the corners: a home either has a garage or it doesn't. Press the button to see where SMOTE puts its synthetic minority samples.</p>
           </div>
-          <p class="stack"><span>scikit-learn</span><span>imbalanced-learn</span><span>XGBoost</span><span>GridSearchCV</span><span>pandas</span></p>
-          <p class="caselinks"><a href="https://github.com/Kunj2710/ahs-disability-prediction">Code and full write-up →</a></p>
-        </aside>
+        </div>
       </div>
-    </div>
+    </article>
   </section>
 
-  <section>
-    <h2>Also built</h2>
-    <p class="section-note">Smaller pieces, same habit: state the result, then say what the result cost to get right.</p>
-    <div class="more">
+  <section id="more">
+    <p class="label">Also built</p>
+    <div class="small">
       <article>
-        <h4>Cassandra vs MongoDB, 13M taxi trips</h4>
-        <span class="res">2.2× writes · 30× deletes · 5× aggregation</span>
-        <p>Four workloads on a GCP VM. My first run showed a 120× gap that contradicted every published result, because I was comparing Cassandra's synchronous writes against MongoDB's. Fixing the comparison was the finding: how you use a database matters as much as which one you pick.</p>
+        <h4>Cassandra vs MongoDB</h4>
+        <span class="r">2.2× writes · 30× deletes · 5× aggregation</span>
+        <p>Four workloads on 13M NYC taxi trips. My first run showed a 120× gap that contradicted every published result, because I compared Cassandra's synchronous writes against MongoDB's. Fixing the comparison was the finding.</p>
         <a href="https://github.com/Kunj2710/cassandra-vs-mongodb-benchmark">Benchmark →</a>
       </article>
       <article>
-        <h4>RAG over PDFs, web, Wikipedia and arXiv</h4>
-        <span class="res">3 vector stores · 3 LLM backends · benchmarked</span>
-        <p>Rather than picking components by reputation, every layer is swappable and measured: Chroma vs FAISS vs ObjectBox, OpenAI vs Groq vs local. FAISS searched fastest, Chroma proved most stable and became the default. Streamlit UI and a FastAPI service on top.</p>
+        <h4>RAG over PDFs, web, arXiv</h4>
+        <span class="r">3 vector stores · 3 LLM backends</span>
+        <p>Every layer swappable and measured rather than chosen by reputation. FAISS searched fastest, Chroma proved most stable and became the default. Streamlit UI and a FastAPI service on top.</p>
         <a href="https://github.com/Kunj2710/rag-document-qa">Code →</a>
       </article>
       <article>
         <h4>Can ML beat buy-and-hold?</h4>
-        <span class="res">3 of 10 strategies beat the market</span>
-        <p>Ten classifiers backtested as weekly trading strategies on five years of Coca-Cola. The two most profitable were the two least accurate, and an SVM with 68.9% accuracy never opened a position. Another reminder that the training metric is not the objective.</p>
+        <span class="r">3 of 10 strategies beat the market</span>
+        <p>Ten classifiers backtested on five years of Coca-Cola. The two most profitable were the two least accurate, and an SVM at 68.9% accuracy never opened a position.</p>
         <a href="https://github.com/Kunj2710/stock-trading-ml-backtest">Backtest →</a>
       </article>
     </div>
   </section>
 
-  <section>
-    <h2>How I work</h2>
-    <div class="principles">
-      <div>
-        <h4>Pick the metric that matches the cost</h4>
-        <p>Accuracy is usually the easiest metric and rarely the right one. The question I ask first is what each kind of mistake costs the person on the other end.</p>
-        <span class="ex">→ KNN over Random Forest: $9.7M per 10K patients</span>
-      </div>
-      <div>
-        <h4>Distrust a result that flatters you</h4>
-        <p>A surprising number is a reason to check the setup, not to celebrate. Twice now the check overturned the headline, and both times the corrected version was the more interesting finding.</p>
-        <span class="ex">→ the 120× database gap that was my own bug</span>
-      </div>
-      <div>
-        <h4>Do the unglamorous data work first</h4>
-        <p>Codebooks, impossible values, leakage. These decide whether a model means anything, and they are invisible in the final score, which is exactly why they get skipped.</p>
-        <span class="ex">→ 72% of "numeric" Census columns were category codes</span>
-      </div>
-    </div>
+  <section id="history">
+    <p class="label">History</p>
+    <div class="job"><div class="yr">2026 — now</div><div><h4>Data Analyst · BU IT Help Center</h4><p>Weekly and monthly Power BI dashboards adopted by help-desk leadership; prototyped AI-assisted triage for routine tickets. Led the team in call volume for three straight weeks while building it.</p></div></div>
+    <div class="job"><div class="yr">2024</div><div><h4>Software Developer · Artem HealthTech</h4><p>Hospital information system used by 1,000+ municipal healthcare workers. Query work cut page loads 35%; a Redis layer cut database load 40% and $3,000/month of infrastructure. Eight clinical workflows redesigned, saving clinicians about 45 minutes a day.</p></div></div>
+    <div class="job"><div class="yr">2024</div><div><h4>Project Manager · Wellnest Tech</h4><p>Angular and .NET sales analytics for 200+ daily users. Promoted from intern after three months to lead five developers. Dashboards surfaced $50K in recoverable revenue; CI/CD took deploys from 3 days to 4 hours.</p></div></div>
+    <div class="job"><div class="yr">2023</div><div><h4>Software Developer Intern · Telnet</h4><p>Recipe platform in Angular for 500+ beta users; one-click cart hit 70% adoption in two weeks.</p></div></div>
+    <div class="job"><div class="yr">2025 — 2026</div><div><h4>M.S. Applied Data Analytics · Boston University</h4><p>GPA 3.8. Big Data Analytics, Data Mining, Data Science with Python, Database Design. B.E. Information Technology, Gujarat Technological University (3.7).</p></div></div>
   </section>
-
-  <section>
-    <h2>Experience</h2>
-    <div class="exp">
-      <div class="when">May 2026 – present</div>
-      <div><h4>Data Analyst · Boston University IT Help Center</h4>
-        <p>Weekly and monthly Power BI dashboards adopted by help-desk leadership; prototyped an AI-assisted triage layer for routine tickets. Led the team in call volume for three consecutive weeks while building it.</p></div>
-    </div>
-    <div class="exp">
-      <div class="when">May – Sep 2024</div>
-      <div><h4>Software Developer · Artem HealthTech</h4>
-        <p>Hospital information system used by 1,000+ municipal healthcare workers. Query optimisation cut page loads 35%; a Redis caching layer cut database load 40% and $3,000/month of infrastructure cost. Redesigned 8 clinical workflows, saving clinicians about 45 minutes a day.</p></div>
-    </div>
-    <div class="exp">
-      <div class="when">Jan – May 2024</div>
-      <div><h4>Project Manager · Wellnest Tech</h4>
-        <p>Angular and .NET sales analytics platform for 200+ daily users. Promoted from intern after three months to lead five developers. Eight executive dashboards surfaced $50K in recoverable revenue; CI/CD took deployments from 3 days to 4 hours.</p></div>
-    </div>
-    <div class="exp">
-      <div class="when">Jul – Aug 2023</div>
-      <div><h4>Software Developer Intern · Telnet</h4>
-        <p>Recipe platform in Angular for 500+ beta users; one-click cart reached 70% adoption within two weeks.</p></div>
-    </div>
-    <div class="exp">
-      <div class="when">2025 – Dec 2026</div>
-      <div><h4>M.S. Applied Data Analytics · Boston University</h4>
-        <p>GPA 3.8. Big Data Analytics, Data Mining, Data Science with Python, Database Design. B.E. Information Technology, Gujarat Technological University (GPA 3.7).</p></div>
-    </div>
-  </section>
-
-  <footer>
-    <div>
-      <p class="big">Looking for data science, ML and data engineering roles.</p>
-      <p><a href="mailto:kunjpatel271002@gmail.com">kunjpatel271002@gmail.com</a> · <a href="https://linkedin.com/in/kunj2710">LinkedIn</a> · <a href="https://github.com/Kunj2710">GitHub</a></p>
-    </div>
-    <p class="fine">Every number here comes from a public repo or the paper.</p>
-  </footer>
 </div>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Looking for data science,<br>ML and data engineering roles.</h2>
+    <p class="links">
+      <a href="mailto:kunjpatel271002@gmail.com">kunjpatel271002@gmail.com</a>
+      <a href="https://github.com/Kunj2710">GitHub</a>
+      <a href="https://linkedin.com/in/kunj2710">LinkedIn</a>
+      <a href="https://csecs-conf.eai-conferences.org/2026/">CSECS 2026</a>
+    </p>
+    <p class="fine">Every number on this page comes from a public repo or the paper. The cost slider recomputes from the published confusion matrices.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- hero: streaming edit scorer ---------- */
+  var cv = document.getElementById('stream'), cx = cv.getContext('2d'), W, H, edits = [], scored = 0,
+      ctr = document.getElementById('ctr');
+  function size(){ var r = cv.getBoundingClientRect(); W = cv.width = r.width * devicePixelRatio;
+    H = cv.height = r.height * devicePixelRatio; cx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0); }
+  size(); addEventListener('resize', size);
+  function spawn(){
+    var risk = Math.random();
+    edits.push({ x:-10, y: 20 + Math.random()*( (H/devicePixelRatio) - 40 ), v: .35 + Math.random()*1.25,
+                 r: 1 + Math.random()*2.2, risk: risk, a: 0 });
+  }
+  for (var i=0;i<70;i++){ spawn(); edits[i].x = Math.random()*(W/devicePixelRatio); }
+  function frame(){
+    var w = W/devicePixelRatio, h = H/devicePixelRatio;
+    cx.clearRect(0,0,w,h);
+    for (var i=edits.length-1;i>=0;i--){
+      var e = edits[i];
+      e.x += e.v; if (e.a < 1) e.a += .02;
+      if (e.x > w + 12){ edits.splice(i,1); scored++; continue; }
+      var col = e.risk > .62 ? '255,93,126' : '61,220,255';
+      cx.beginPath(); cx.moveTo(e.x - e.v*14, e.y); cx.lineTo(e.x, e.y);
+      cx.strokeStyle = 'rgba(' + col + ',' + (0.10 * e.a) + ')'; cx.lineWidth = e.r*0.8; cx.stroke();
+      cx.beginPath(); cx.arc(e.x, e.y, e.r, 0, 6.284);
+      cx.fillStyle = 'rgba(' + col + ',' + (0.75 * e.a) + ')'; cx.fill();
+    }
+    if (edits.length < 90 && Math.random() > .55) spawn();
+    if (ctr) ctr.textContent = (1153482 + scored).toLocaleString();
+    requestAnimationFrame(frame);
+  }
+  if (reduce){ var w0=W/devicePixelRatio,h0=H/devicePixelRatio; edits.forEach(function(e){
+      cx.beginPath(); cx.arc(e.x,e.y,e.r,0,6.284);
+      cx.fillStyle = e.risk > .62 ? 'rgba(255,93,126,.7)' : 'rgba(61,220,255,.7)'; cx.fill(); });
+      if (ctr) ctr.textContent = (1153482).toLocaleString();
+  } else requestAnimationFrame(frame);
+
+  /* ---------- AUC chart ---------- */
+  var ac = document.getElementById('aucChart');
+  function drawAuc(p){
+    var ctx = ac.getContext('2d'), r = ac.getBoundingClientRect();
+    ac.width = r.width*devicePixelRatio; ac.height = 260*devicePixelRatio;
+    ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+    var w = r.width, h = 260, pad = 34, rows = [
+      { n:'Distributed DNN (Elephas)', v:0.909, c:'201,242,77' },
+      { n:'Logistic regression, RDD',  v:0.845, c:'61,220,255' },
+      { n:'Random baseline',           v:0.500, c:'95,107,125' }];
+    ctx.clearRect(0,0,w,h);
+    ctx.font = '11px "Azeret Mono", monospace'; ctx.textBaseline = 'middle';
+    var x0 = pad, x1 = w - 58, scale = function(v){ return x0 + (v - .5)/(0.95 - .5) * (x1 - x0); };
+    [0.5,0.6,0.7,0.8,0.9].forEach(function(t){
+      var x = scale(t); ctx.strokeStyle = 'rgba(34,40,52,.9)'; ctx.beginPath();
+      ctx.moveTo(x, 26); ctx.lineTo(x, h-26); ctx.stroke();
+      ctx.fillStyle = '#5f6b7d'; ctx.textAlign = 'center'; ctx.fillText(t.toFixed(1), x, h-12);
+    });
+    rows.forEach(function(d,i){
+      var y = 46 + i*62, val = .5 + (d.v - .5)*p;
+      ctx.fillStyle = '#98a3b3'; ctx.textAlign = 'left'; ctx.fillText(d.n, x0, y - 15);
+      ctx.fillStyle = 'rgba(22,27,36,1)'; ctx.fillRect(x0, y, x1 - x0, 14);
+      var g = ctx.createLinearGradient(x0,0,scale(val),0);
+      g.addColorStop(0,'rgba(' + d.c + ',.25)'); g.addColorStop(1,'rgba(' + d.c + ',.85)');
+      ctx.fillStyle = g; ctx.fillRect(x0, y, Math.max(0, scale(val) - x0), 14);
+      ctx.fillStyle = '#e8ecf2'; ctx.textAlign = 'left';
+      ctx.font = '600 12px "Azeret Mono", monospace';
+      ctx.fillText(val.toFixed(3), x1 + 8, y + 7);
+      ctx.font = '11px "Azeret Mono", monospace';
+    });
+  }
+  var aucDone = false;
+  function runAuc(){
+    if (aucDone) return; aucDone = true;
+    if (reduce){ drawAuc(1); return; }
+    var t0 = performance.now();
+    (function step(now){ var p = Math.min(1, (now - t0)/900); drawAuc(1 - Math.pow(1-p,3));
+      if (p < 1) requestAnimationFrame(step); })(performance.now());
+  }
+  addEventListener('resize', function(){ if (aucDone) drawAuc(1); });
+
+  /* ---------- cost slider ---------- */
+  /* FN = missed diagnoses per 10K (published); FP derived from the published total cost at FN=$150K, FP=$300 */
+  var models = [
+    { n:'KNN',                 acc:0.719, fn:1498, fp:1333 },
+    { n:'Random Forest',       acc:0.734, fn:1563, fp:1167 },
+    { n:'Decision Tree',       acc:0.730, fn:1577, fp:1167 },
+    { n:'Logistic Regression', acc:0.729, fn:1622, fp:1000 },
+    { n:'SVM (RBF)',           acc:0.730, fn:1631, fp:833  },
+    { n:'Naive Bayes',         acc:0.716, fn:1913, fp:833  }];
+  var fn = document.getElementById('fn'), fnOut = document.getElementById('fnOut'),
+      rank = document.getElementById('rank'), verdict = document.getElementById('verdict'), built = false;
+  function money(v){ return '$' + (v/1e6).toFixed(1) + 'M'; }
+  function render(){
+    var c = +fn.value;
+    fnOut.textContent = '$' + c.toLocaleString();
+    var scored = models.map(function(m){ return { n:m.n, acc:m.acc, cost: m.fn*c + m.fp*300 }; })
+                       .sort(function(a,b){ return a.cost - b.cost; });
+    var max = scored[scored.length-1].cost, min = scored[0].cost;
+    if (!built){
+      rank.innerHTML = models.map(function(m){
+        return '<div class="row" data-n="' + m.n + '"><span class="pos"></span>' +
+               '<span class="bar"><span class="fill"></span><span class="nm"></span></span>' +
+               '<span class="val"></span></div>'; }).join('');
+      built = true;
+    }
+    var rows = Array.prototype.slice.call(rank.children);
+    scored.forEach(function(s, i){
+      var el = rows.find(function(r){ return r.dataset.n === s.n; });
+      el.style.order = i;
+      el.classList.toggle('lead', i === 0);
+      el.querySelector('.pos').textContent = (i+1);
+      el.querySelector('.nm').textContent = s.n;
+      el.querySelector('.val').textContent = money(s.cost);
+      el.querySelector('.fill').style.width = (18 + 82 * (s.cost - min)/(max - min)) + '%';
+    });
+    rank.style.display = 'flex'; rank.style.flexDirection = 'column';
+    var best = scored[0], acc = models.slice().sort(function(a,b){ return b.acc - a.acc; })[0];
+    var saved = scored.find(function(s){ return s.n === acc.n; }).cost - best.cost;
+    verdict.innerHTML = best.n === acc.n
+      ? 'At this cost, the accuracy winner (<b>' + acc.n + '</b>) is also the cheapest. Raise the cost of a missed diagnosis and that stops being true.'
+      : 'Cheapest: <b>' + best.n + '</b>, which ranks #' + (models.slice().sort(function(a,b){return b.acc-a.acc;}).findIndex(function(m){return m.n===best.n;})+1) +
+        ' of 6 on accuracy. Shipping it instead of ' + acc.n + ' saves <b>' + money(saved) + '</b> per 10,000 patients.';
+  }
+  fn.addEventListener('input', render); render();
+
+  /* ---------- SMOTE demo ---------- */
+  var sc = document.getElementById('smote'), smoteOn = false, synth = [],
+      cap = document.getElementById('smoteCap');
+  var reals = [[0,0],[0,1],[1,0],[1,1],[0,0],[1,1],[0,1],[1,1],[0,0],[1,0],[1,1],[0,0]];
+  function drawSmote(){
+    var ctx = sc.getContext('2d'), r = sc.getBoundingClientRect();
+    sc.width = r.width*devicePixelRatio; sc.height = 250*devicePixelRatio;
+    ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+    var w = r.width, h = 250, pad = 40, X = function(v){ return pad + v*(w - pad - 30); },
+        Y = function(v){ return h - pad - v*(h - pad - 26); };
+    ctx.clearRect(0,0,w,h);
+    ctx.strokeStyle = 'rgba(34,40,52,1)'; ctx.lineWidth = 1;
+    [0,.25,.5,.75,1].forEach(function(t){
+      ctx.beginPath(); ctx.moveTo(X(t), Y(0)); ctx.lineTo(X(t), Y(1)); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(X(0), Y(t)); ctx.lineTo(X(1), Y(t)); ctx.stroke(); });
+    ctx.font = '10px "Azeret Mono", monospace'; ctx.fillStyle = '#5f6b7d';
+    ctx.textAlign = 'center'; ctx.fillText('no garage', X(0), h - 16); ctx.fillText('garage', X(1), h - 16);
+    ctx.save(); ctx.translate(12, h/2); ctx.rotate(-Math.PI/2); ctx.textAlign = 'center';
+    ctx.fillText('central heating →', 0, 0); ctx.restore();
+    synth.forEach(function(p){
+      ctx.beginPath(); ctx.arc(X(p[0]), Y(p[1]), 4.5, 0, 6.284);
+      ctx.fillStyle = 'rgba(255,181,69,.85)'; ctx.fill(); });
+    reals.forEach(function(p){
+      ctx.beginPath(); ctx.arc(X(p[0]), Y(p[1]), 5.5, 0, 6.284);
+      ctx.fillStyle = 'rgba(61,220,255,.9)'; ctx.fill(); });
+  }
+  function genSynth(){
+    synth = [];
+    for (var i=0;i<26;i++){
+      var a = reals[(Math.random()*reals.length)|0], b = reals[(Math.random()*reals.length)|0], t = Math.random();
+      var p = [ a[0] + (b[0]-a[0])*t, a[1] + (b[1]-a[1])*t ];
+      if (Math.abs(p[0]-Math.round(p[0])) > .08 || Math.abs(p[1]-Math.round(p[1])) > .08) synth.push(p);
+    }
+  }
+  document.getElementById('smoteBtn').addEventListener('click', function(){
+    smoteOn = true; this.setAttribute('aria-pressed','true'); genSynth(); drawSmote();
+    cap.innerHTML = '<span style="color:#ffb545">Amber points are synthetic.</span> Each one claims a household with 0.4 of a garage and 0.7 of a heating system. In 778 dimensions almost every synthetic sample looks like this, which is why the oversampled models scored 95% on the majority class and 30–46% on the class that mattered.';
+  });
+  document.getElementById('resetBtn').addEventListener('click', function(){
+    synth = []; smoteOn = false; document.getElementById('smoteBtn').setAttribute('aria-pressed','false'); drawSmote();
+    cap.textContent = 'Real households sit at the corners: a home either has a garage or it doesn’t. Press the button to see where SMOTE puts its synthetic minority samples.';
+  });
+  addEventListener('resize', drawSmote);
+
+  /* ---------- reveal on scroll + nav state ---------- */
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if (!e.isIntersecting) return;
+      if (e.target.id === 'aucChart') runAuc();
+      if (e.target.id === 'smote') drawSmote(); });
+  }, { threshold: .25 });
+  io.observe(ac); io.observe(sc);
+
+  var secs = ['work','more','history','contact'].map(function(id){ return document.getElementById(id); });
+  var nio = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      var a = document.querySelector('nav a[href="#' + e.target.id + '"]');
+      if (a) a.classList.toggle('on', e.isIntersecting && e.intersectionRatio > .1); });
+  }, { threshold:[.1,.5] });
+  secs.forEach(function(s){ if (s) nio.observe(s); });
+  drawSmote();
+})();
+</script>
