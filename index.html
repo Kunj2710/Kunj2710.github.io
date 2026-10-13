@@ -119,6 +119,14 @@
   .small p{color:var(--ink-2);font-size:15px;margin:0 0 14px;}
   .small a{font-family:var(--mono);font-size:12px;}
 
+  /* ---------- skills ---------- */
+  .skills{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .skills .wide{grid-column:span 2;}
+  @media (max-width:860px){.skills{grid-template-columns:1fr;}.skills .wide{grid-column:auto;}}
+  .skills>div{border:1px solid var(--line);padding:20px;background:var(--panel);}
+  .skills h4{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin:0 0 10px;font-weight:500;}
+  .skills p{margin:0;color:var(--ink-2);font-size:15px;}
+
   /* ---------- work history ---------- */
   .job{display:grid;grid-template-columns:132px 1fr;gap:26px;border-top:1px solid var(--line);padding:20px 0;}
   .job .yr{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);padding-top:4px;}
@@ -144,6 +152,7 @@
     <ul>
       <li><a href="#work">Work</a></li>
       <li><a href="#more">More</a></li>
+      <li><a href="#skills">Skills</a></li>
       <li><a href="#history">History</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -154,11 +163,12 @@
 <div class="hero">
   <canvas id="stream" aria-hidden="true"></canvas>
   <div class="wrap">
-    <p class="kicker">Boston · M.S. Applied Data Analytics, Boston University</p>
+    <p class="kicker">Boston · M.S. Applied Data Analytics, Boston University · Graduating Dec 2026</p>
     <h1>Kunj Patel</h1>
-    <p class="sub">Data scientist working on distributed machine learning and cost-aware model selection. My paper on predicting Wikipedia editor dropout across <b>60M revision events</b> was accepted at <b>EAI CSECS 2026</b>. Before grad school, a year shipping software that hospitals used daily.</p>
+    <p class="sub">Data scientist and analyst. I build machine learning models that run at scale and turn messy data into decisions people can act on. My paper on predicting Wikipedia editor dropout across <b>60M revision events</b> was accepted at <b>EAI CSECS 2026</b>. Before grad school, I spent a year shipping software that hospitals used every day.</p>
     <p class="cta">
       <a class="key" href="#work">See the work</a>
+      <a href="resume.pdf">Resume (PDF)</a>
       <a href="https://github.com/Kunj2710">GitHub</a>
       <a href="https://linkedin.com/in/kunj2710">LinkedIn</a>
       <a href="mailto:kunjpatel271002@gmail.com">Email</a>
@@ -186,23 +196,23 @@
       <p class="who">with Aryan Meena, advised by Prof. F. Alizadeh-Sabdiz · Boston, 3 to 5 November · Springer LNICST</p>
       <div class="cols">
         <div>
-          <p>Wikipedia runs on volunteers and keeps losing its newcomers. Prior studies fit on one machine, which capped them at small samples. We asked whether an editor's <b>first ten edits</b> predict whether they are gone six months later, across the full English history from 2021 to 2025: 25 GB compressed, 60 million revision events, 1.15 million editors. Roughly ten times the scale of previous single-machine work.</p>
+          <p>Wikipedia runs on volunteers and keeps losing its newcomers. Prior studies fit on one machine, which capped them at small samples. We asked whether an editor's <b>first ten edits</b> predict whether they are gone six months later, across the full English history from 2021 to 2025: 25 GB compressed, 60 million revision events, 1.15 million editors. Roughly ten times the scale of previous work done on a single machine.</p>
           <p class="mark mine">My part</p>
           <div class="mine-body">
-            <p>The feature representation and the model benchmark. I designed the 13-feature behavioural vector and the constraint that makes it defensible: every feature computable from the first ten edits alone. Anything from an editor's later history leaks the outcome and quietly inflates the score. Then I implemented the three models, with logistic regression and K-Means written on Spark RDDs rather than called from MLlib.</p>
+            <p>The feature representation and the model benchmark. I designed the 13 behavioural features and the constraint that makes them defensible: every feature computable from the first ten edits alone. Anything from an editor's later history leaks the outcome and quietly inflates the score. Then I implemented the three models, with logistic regression and K-Means written on Spark RDDs rather than called from MLlib.</p>
           </div>
           <p class="mark broke">What made it hard</p>
           <div class="broke-body">
-            <p>Scale changes which mistakes are cheap. A leaky feature on a laptop costs a rerun; here a full pass over 60 million events costs cluster time, so the feature set had to be right before the first run. Streaming brought the opposite problem: a live event has no window around it, so history-based features needed single-event proxies that keep the schema the batch models trained on.</p>
+            <p>Scale changes which mistakes are cheap. A leaky feature on a laptop costs a rerun; here a full pass over 60 million events costs cluster time, so the feature set had to be right before the first run. Streaming brought the opposite problem: a live event has no window around it, so features built on an editor's history needed stand ins computed from one event, keeping the schema the batch models trained on.</p>
           </div>
           <p class="stack"><span>PySpark</span><span>Kafka</span><span>Elephas</span><span>Keras</span><span>Dataproc</span><span>BigQuery</span></p>
-          <a class="golink" href="https://github.com/Kunj2710/wikiflow">Code and write-up →</a>
+          <a class="golink" href="https://github.com/Kunj2710/wikiflow">Code and writeup →</a>
         </div>
         <div class="live">
-          <div class="live-head"><span class="t">Model comparison</span><span class="pulse"><i></i>held-out editors</span></div>
+          <div class="live-head"><span class="t">Model comparison</span><span class="pulse"><i></i>test set editors</span></div>
           <div class="live-body">
             <canvas id="aucChart" height="260" aria-label="AUC comparison: distributed DNN 0.909, logistic regression 0.845, random baseline 0.5"></canvas>
-            <p class="cap">The distributed Keras network beats our from-scratch logistic regression by 6.4 points. Both were trained on the same leakage-free 13-feature vectors, so the gap is the model, not the data.</p>
+            <p class="cap">The distributed Keras network beats the logistic regression we wrote from scratch by 6.4 points. Both were trained on the same 13 features with no target leakage, so the gap is the model, not the data.</p>
           </div>
         </div>
       </div>
@@ -214,30 +224,30 @@
         <h3>The most accurate model was the wrong one to ship</h3>
         <span class="badge">Solo</span>
       </div>
-      <p class="who">cost-sensitive model selection · 70,000 patients · BU MET CS 577</p>
+      <p class="who">model selection by real cost · 70,000 patients · BU MET CS 577</p>
       <div class="cols">
         <div>
           <p>A doctor has about fifteen minutes to decide whether to refer a patient to a cardiologist. The usual move is to train several classifiers and ship the most accurate. That is the wrong objective here: sending a sick patient home costs roughly <b>$150,000</b> in emergency care, an unnecessary referral about <b>$300</b>. Accuracy weights both errors equally, so it cannot be the deciding metric.</p>
           <p class="mark mine">My part</p>
           <div class="mine-body">
-            <p>All of it, and the framing most of all. Re-ranking the six trained models by expected cost <b>reverses the leaderboard</b>. Then I stress-tested that instead of stopping at it: sweeping the false-negative cost from $25K to $200K, auditing every model for gender fairness, and injecting 20% measurement noise to see which survive. Drag the slider and watch the ranking move.</p>
+            <p>All of it, and the framing most of all. Ranking the six trained models by expected cost instead <b>reverses the leaderboard</b>. Then I tested how far that holds instead of stopping there: sweeping the cost of a missed diagnosis from $25K to $200K, auditing every model for gender fairness, and injecting 20% measurement noise to see which survive. Drag the slider and watch the ranking move.</p>
           </div>
           <p class="mark broke">What went wrong first</p>
           <div class="broke-body">
-            <p>The raw data was worse than it looked. Eight checks turned up blood pressures of 16,020 mmHg, negative diastolic values, heights of 250 cm and ages stored in days. Clean-looking accuracy sat on top of physically impossible records, so the cleaning rules had to come before any comparison was worth reading.</p>
+            <p>The raw data was worse than it looked. Eight checks turned up blood pressures of 16,020 mmHg, negative diastolic values, heights of 250 cm and ages stored in days. Accuracy that looked clean sat on top of physically impossible records, so the cleaning rules had to come before any comparison was worth reading.</p>
           </div>
-          <p class="stack"><span>scikit-learn</span><span>pandas</span><span>10-fold CV</span><span>fairness audit</span></p>
-          <a class="golink" href="https://github.com/Kunj2710/cvd-referral-cost-classifier">Code and write-up →</a>
+          <p class="stack"><span>scikit-learn</span><span>pandas</span><span>10 fold CV</span><span>fairness audit</span></p>
+          <a class="golink" href="https://github.com/Kunj2710/cvd-referral-cost-classifier">Code and writeup →</a>
         </div>
         <div class="live">
-          <div class="live-head"><span class="t">Cost-ranked leaderboard</span><span class="pulse"><i></i>per 10,000 patients</span></div>
+          <div class="live-head"><span class="t">Leaderboard ranked by cost</span><span class="pulse"><i></i>per 10,000 patients</span></div>
           <div class="live-body">
             <div class="slider-row">
               <label for="fn">Cost of one missed diagnosis</label>
               <output id="fnOut">$150,000</output>
             </div>
             <input id="fn" type="range" min="25000" max="200000" step="5000" value="150000">
-            <p class="hint">False positive fixed at $300 · drag to re-rank</p>
+            <p class="hint">False positive fixed at $300 · drag to rerank</p>
             <div class="rank" id="rank"></div>
             <p class="verdict" id="verdict"></p>
           </div>
@@ -248,7 +258,7 @@
     <!-- ============ CASE 3 ============ -->
     <article class="case">
       <div class="case-top">
-        <h3>Why SMOTE failed on 778 one-hot features</h3>
+        <h3>Why SMOTE failed on 778 encoded features</h3>
         <span class="badge">Team of two</span>
       </div>
       <p class="who">disability prediction, 2023 American Housing Survey · with Jai Sharma · BU MET CS 699</p>
@@ -261,19 +271,19 @@
           </div>
           <p class="mark broke">What went wrong, and why it mattered</p>
           <div class="broke-body">
-            <p>My oversampled models failed consistently: 95% or more on the majority class, 30 to 46% recall on the households we cared about. The useful part was working out why. One-hot encoding pushes the data into 778 mostly binary dimensions, and SMOTE interpolates between neighbours, producing fractions for yes/no fields: households that cannot exist. Undersampling won by keeping only real rows. That negative result is now the most useful paragraph in our report.</p>
+            <p>My oversampled models failed consistently: 95% or more on the majority class, 30 to 46% recall on the households we cared about. The useful part was working out why. One hot encoding pushes the data into 778 mostly binary dimensions, and SMOTE interpolates between neighbours, producing fractions for yes/no fields: households that cannot exist. Undersampling won by keeping only real rows. That negative result is now the most useful paragraph in our report.</p>
           </div>
           <p class="stack"><span>scikit-learn</span><span>imbalanced-learn</span><span>XGBoost</span><span>GridSearchCV</span></p>
-          <a class="golink" href="https://github.com/Kunj2710/ahs-disability-prediction">Code and write-up →</a>
+          <a class="golink" href="https://github.com/Kunj2710/ahs-disability-prediction">Code and writeup →</a>
         </div>
         <div class="live">
-          <div class="live-head"><span class="t">What SMOTE invents</span><span class="pulse"><i></i>one-hot space</span></div>
+          <div class="live-head"><span class="t">What SMOTE invents</span><span class="pulse"><i></i>encoded space</span></div>
           <div class="live-body">
             <div class="chips">
               <button class="chip" id="smoteBtn" aria-pressed="false">Generate synthetic households</button>
               <button class="chip" id="resetBtn">Reset</button>
             </div>
-            <canvas id="smote" height="250" aria-label="Scatter of real households at one-hot corners versus synthetic points with impossible fractional values"></canvas>
+            <canvas id="smote" height="250" aria-label="Scatter of real households at the corners versus synthetic points with impossible fractional values"></canvas>
             <p class="cap" id="smoteCap">Real households sit at the corners: a home either has a garage or it doesn't. Press the button to see where SMOTE puts its synthetic minority samples.</p>
           </div>
         </div>
@@ -297,7 +307,7 @@
         <a href="https://github.com/Kunj2710/rag-document-qa">Code →</a>
       </article>
       <article>
-        <h4>Can ML beat buy-and-hold?</h4>
+        <h4>Can ML beat buy and hold?</h4>
         <span class="r">3 of 10 strategies beat the market</span>
         <p>Ten classifiers backtested on five years of Coca-Cola. The two most profitable were the two least accurate, and an SVM at 68.9% accuracy never opened a position.</p>
         <a href="https://github.com/Kunj2710/stock-trading-ml-backtest">Backtest →</a>
@@ -305,26 +315,38 @@
     </div>
   </section>
 
+  <section id="skills">
+    <p class="label">Skills</p>
+    <div class="skills">
+      <div><h4>Languages</h4><p>Python, SQL, R, Java, JavaScript, TypeScript</p></div>
+      <div class="wide"><h4>Machine learning &amp; statistics</h4><p>Neural networks, Bayesian inference, hypothesis testing, statistical and predictive modeling, feature engineering, exploratory data analysis, RAG, scikit-learn, TensorFlow, Keras, XGBoost, LangChain, FAISS</p></div>
+      <div><h4>Big data &amp; databases</h4><p>Apache Spark (PySpark), Kafka, Hadoop, ETL pipelines, data warehousing, data validation, PostgreSQL, MySQL, MongoDB, Cassandra</p></div>
+      <div><h4>BI &amp; visualization</h4><p>Power BI, Tableau, Excel, Streamlit, Jupyter</p></div>
+      <div><h4>Cloud &amp; tools</h4><p>GCP (BigQuery, Dataproc, GCS), AWS (S3, EC2), Docker, Git, FastAPI, Agile/Scrum</p></div>
+    </div>
+  </section>
+
   <section id="history">
     <p class="label">History</p>
-    <div class="job"><div class="yr">2026 to now</div><div><h4>Data Analyst · BU IT Help Center</h4><p>Weekly and monthly Power BI dashboards adopted by help-desk leadership; prototyped AI-assisted triage for routine tickets. Led the team in call volume for three straight weeks while building it.</p></div></div>
-    <div class="job"><div class="yr">2024</div><div><h4>Software Developer · Artem HealthTech</h4><p>Hospital information system used by 1,000+ municipal healthcare workers. Query work cut page loads 35%; a Redis layer cut database load 40% and $3,000/month of infrastructure. Eight clinical workflows redesigned, saving clinicians about 45 minutes a day.</p></div></div>
-    <div class="job"><div class="yr">2024</div><div><h4>Project Manager · Wellnest Tech</h4><p>Angular and .NET sales analytics for 200+ daily users. Promoted from intern after three months to lead five developers. Dashboards surfaced $50K in recoverable revenue; CI/CD took deploys from 3 days to 4 hours.</p></div></div>
-    <div class="job"><div class="yr">2023</div><div><h4>Software Developer Intern · Telnet</h4><p>Recipe platform in Angular for 500+ beta users; one-click cart hit 70% adoption in two weeks.</p></div></div>
-    <div class="job"><div class="yr">2025 to 2026</div><div><h4>M.S. Applied Data Analytics · Boston University</h4><p>GPA 3.8. Big Data Analytics, Data Mining, Data Science with Python, Database Design. B.E. Information Technology, Gujarat Technological University (3.7).</p></div></div>
+    <div class="job"><div class="yr">May 2026 to now</div><div><h4>Data Analyst · BU IT Help Center</h4><p>Analyzed weekly support call data by representative and requester group to find recurring bottlenecks. Built weekly and monthly Power BI dashboards adopted by help desk leadership, and prototyped an AI triage layer for routine tickets. Led the team in call volume for three straight weeks while building it.</p></div></div>
+    <div class="job"><div class="yr">May to Sep 2024</div><div><h4>Software Developer · Artem HealthTech</h4><p>Hospital information system used by 1,000+ municipal healthcare workers. SQL query tuning cut page loads 35%; a Redis layer cut database load 40% and $3,000/month of infrastructure. Eight clinical workflows redesigned, saving clinicians about 45 minutes a day.</p></div></div>
+    <div class="job"><div class="yr">Jan to May 2024</div><div><h4>Project Manager · Wellnest Tech</h4><p>Angular and .NET sales analytics for 200+ daily users. Promoted from intern after three months to lead five developers. Dashboards surfaced $50K in recoverable revenue; CI/CD took deploys from 3 days to 4 hours.</p></div></div>
+    <div class="job"><div class="yr">Jul to Aug 2023</div><div><h4>Software Developer Intern · Telnet</h4><p>Recipe platform in Angular for 500+ beta users; a single click cart feature hit 70% adoption in two weeks.</p></div></div>
+    <div class="job"><div class="yr">Sep 2025 to Dec 2026</div><div><h4>M.S. Applied Data Analytics · Boston University</h4><p>GPA 3.8. Big Data Analytics, Machine Learning, Data Mining, Data Science with Python, Database Design. B.E. Information Technology, Gujarat Technological University, 2020 to 2024 (GPA 3.7).</p></div></div>
   </section>
 </div>
 
 <footer id="contact">
   <div class="wrap">
-    <h2>Looking for data science,<br>ML and data engineering roles.</h2>
+    <h2>Looking for full time data scientist,<br>data analyst and ML roles.</h2>
     <p class="links">
       <a href="mailto:kunjpatel271002@gmail.com">kunjpatel271002@gmail.com</a>
+      <a href="resume.pdf">Resume (PDF)</a>
       <a href="https://github.com/Kunj2710">GitHub</a>
       <a href="https://linkedin.com/in/kunj2710">LinkedIn</a>
       <a href="https://csecs-conf.eai-conferences.org/2026/">CSECS 2026</a>
     </p>
-    <p class="fine">Every number on this page comes from a public repo or the paper. The cost slider recomputes from the published confusion matrices.</p>
+    <p class="fine">Project numbers come from the linked public repos or the paper. The cost slider recomputes from the published confusion matrices.</p>
   </div>
 </footer>
 
@@ -505,7 +527,7 @@
   }, { threshold: .25 });
   io.observe(ac); io.observe(sc);
 
-  var secs = ['work','more','history','contact'].map(function(id){ return document.getElementById(id); });
+  var secs = ['work','more','skills','history','contact'].map(function(id){ return document.getElementById(id); });
   var nio = new IntersectionObserver(function(es){
     es.forEach(function(e){
       var a = document.querySelector('nav a[href="#' + e.target.id + '"]');
